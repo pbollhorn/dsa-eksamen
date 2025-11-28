@@ -3,5 +3,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background("aqua");
+  //circle in the center with a width of 50
+  circle(200, 200, 50);
 }
