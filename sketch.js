@@ -15,15 +15,24 @@ async function loadModules() {
 function buildGraph() {
   const graph = new Graph();
 
-  // Now you can use Node
+  // Nogle løse Nodes
   const node0 = new Node(300, 50);
   const node1 = new Node(200, 200);
   const node2 = new Node(400, 500);
+  const node3 = new Node(1000, 500);
 
+  // Sæt nodes ind i grafen
   graph.addNode(node0);
   graph.addNode(node1);
   graph.addNode(node2);
+  graph.addNode(node3);
 
+  // Lav links imellem grafens nodes
+  graph.addLink(node0, node1);
+  graph.addLink(node1, node2);
+  graph.addLink(node2, node3);
+  graph.addLink(node3, node0);
+  graph.addLink(node3, node1);
 
   return graph;
 }
@@ -31,24 +40,31 @@ function buildGraph() {
 // setup() is called once when the sketch begins running
 async function setup() {
   await loadModules();
-  createCanvas(1400, 600);
-
   graph = buildGraph();
-
+  createCanvas(1400, 600);
 }
 
 // draw() is run repeatedly approx. 60 times per second
-// draw() begins running after setup() has finished
 function draw() {
+  // in case setup() has not finished yet
+  if (!graph) return;
+
   background("aqua");
-  //circle in the center with a width of 50
-  // circle(200, 200, 50);
-
-
 
   for (const node of graph.nodes) {
-    circle(node.x, node.y, 50);
+    drawNode(node);
+    for (const otherNode of node.links) {
+      drawLink(node, otherNode);
+    }
   }
+}
 
-  line(300, 50, 200, 200);
+const NODE_RADIUS = 20;
+
+function drawNode(node) {
+  circle(node.x, node.y, 2 * NODE_RADIUS);
+}
+
+function drawLink(nodeA, nodeB) {
+  line(nodeA.x, nodeA.y, nodeB.x, nodeB.y);
 }

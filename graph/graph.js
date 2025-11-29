@@ -7,7 +7,8 @@ export default class Graph {
     this.nodes.push(node);
   }
 
-  addLink(node1, node2) {
-    node1.neighbors.add(node2);
+  // add link from nodeA to nodeB
+  addLink(nodeA, nodeB) {
+    nodeA.addLink(nodeB);
   }
 }
