@@ -51,20 +51,48 @@ function draw() {
 
   background("aqua");
 
+  // Draw the nodes
   for (const node of graph.nodes) {
     drawNode(node);
+  }
+
+  // Draw the link
+  for (const node of graph.nodes) {
     for (const otherNode of node.links) {
       drawLink(node, otherNode);
     }
   }
 }
 
-const NODE_RADIUS = 20;
+const NODE_RADIUS = 10;
 
 function drawNode(node) {
   circle(node.x, node.y, 2 * NODE_RADIUS);
 }
 
 function drawLink(nodeA, nodeB) {
-  line(nodeA.x, nodeA.y, nodeB.x, nodeB.y);
+  // Angle from A to B
+  const a = atan2(nodeB.y - nodeA.y, nodeB.x - nodeA.x);
+
+  // Start point at edge of nodeA's circle
+  const startX = nodeA.x + NODE_RADIUS * cos(a);
+  const startY = nodeA.y + NODE_RADIUS * sin(a);
+
+  // End point at edge of nodeB's circle
+  const endX = nodeB.x - NODE_RADIUS * cos(a);
+  const endY = nodeB.y - NODE_RADIUS * sin(a);
+
+  // Draw the line
+  line(startX, startY, endX, endY);
+
+  // Draw the arrowhead at the end
+  const arrowSize = 10; // size of the arrowhead
+  triangle(
+    endX,
+    endY,
+    endX - arrowSize * cos(a - PI / 6),
+    endY - arrowSize * sin(a - PI / 6),
+    endX - arrowSize * cos(a + PI / 6),
+    endY - arrowSize * sin(a + PI / 6)
+  );
 }
