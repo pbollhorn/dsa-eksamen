@@ -54,7 +54,11 @@ function draw() {
   // in case setup() has not finished yet
   if (!graph) return;
 
-  background(bgImg);
+  if (DISPLAY_BACKGROUND) {
+    background(bgImg);
+  } else {
+    background("white");
+  }
 
   // Draw the nodes
   for (const node of graph.nodes) {
