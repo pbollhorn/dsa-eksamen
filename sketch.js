@@ -2,6 +2,8 @@ let Graph;
 let Node;
 let graph;
 
+// let DISPLAY_COORDINATES = true;
+
 async function loadModules() {
   // Dynamically import Graph from the module
   let module = await import("./graph/graph.js");
@@ -70,6 +72,10 @@ const NODE_RADIUS = 10;
 function drawNode(node) {
   fill("white");
   circle(node.x, node.y, 2 * NODE_RADIUS);
+  if (DISPLAY_COORDINATES) {
+    fill("blue");
+    text(`${node.x}, ${node.y}`, node.x, node.y);
+  }
 }
 
 function drawLink(nodeA, nodeB) {
