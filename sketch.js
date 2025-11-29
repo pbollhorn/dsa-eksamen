@@ -1,6 +1,7 @@
 let Graph;
 let Node;
 let graph;
+let bgImg;
 
 // let DISPLAY_COORDINATES = true;
 
@@ -42,6 +43,7 @@ function buildGraph() {
 
 // setup() is called once when the sketch begins running
 async function setup() {
+  bgImg = await loadImage("city.png");
   await loadModules();
   graph = buildGraph();
   createCanvas(1400, 600);
@@ -52,7 +54,7 @@ function draw() {
   // in case setup() has not finished yet
   if (!graph) return;
 
-  background("aqua");
+  background(bgImg);
 
   // Draw the nodes
   for (const node of graph.nodes) {
