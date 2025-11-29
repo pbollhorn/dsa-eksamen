@@ -6,7 +6,7 @@ async function loadModules() {
   const Node = module.default; // default export
 
   // Now you can use Node
-  const n1 = new Node(100, 100);
+  const n1 = new Node(300, 50);
   const n2 = new Node(200, 200);
 
   n1.addNeighbor(n2);
@@ -21,11 +21,7 @@ async function loadModules() {
 async function setup() {
   await loadModules();
 
-
-
-
-
-  createCanvas(400, 400);
+  createCanvas(1400, 600);
 }
 
 // draw() is run repeatedly approx. 60 times per second
@@ -33,5 +29,11 @@ async function setup() {
 function draw() {
   background("aqua");
   //circle in the center with a width of 50
-  circle(200, 200, 50);
+  // circle(200, 200, 50);
+
+  for (n of nodes) {
+    circle(n.x, n.y, 50);
+  }
+
+  line(300, 50, 200, 200);
 }
