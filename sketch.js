@@ -33,6 +33,7 @@ function buildGraph() {
   graph.addLink(node2, node3);
   graph.addLink(node3, node0);
   graph.addLink(node3, node1);
+  graph.addLink(node3, node2);
 
   return graph;
 }
@@ -67,6 +68,7 @@ function draw() {
 const NODE_RADIUS = 10;
 
 function drawNode(node) {
+  fill("white");
   circle(node.x, node.y, 2 * NODE_RADIUS);
 }
 
@@ -86,6 +88,7 @@ function drawLink(nodeA, nodeB) {
   line(startX, startY, endX, endY);
 
   // Draw the arrowhead at the end
+  fill("black");
   const arrowSize = 10; // size of the arrowhead
   triangle(
     endX,
