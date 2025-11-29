@@ -19,24 +19,24 @@ function buildGraph() {
   const graph = new Graph();
 
   // Nogle løse Nodes
-  const node0 = new Node(300, 50);
-  const node1 = new Node(200, 200);
-  const node2 = new Node(400, 500);
-  const node3 = new Node(1000, 500);
+  const node0 = new Node(130, 80);
+  const node1 = new Node(130, 270);
+  const node2 = new Node(130, 420);
+  const node3 = new Node(675, 420);
+  const node4 = new Node(1280, 420);
 
   // Sæt nodes ind i grafen
   graph.addNode(node0);
   graph.addNode(node1);
   graph.addNode(node2);
   graph.addNode(node3);
+  graph.addNode(node4);
 
   // Lav links imellem grafens nodes
   graph.addLink(node0, node1);
   graph.addLink(node1, node2);
   graph.addLink(node2, node3);
-  graph.addLink(node3, node0);
-  graph.addLink(node3, node1);
-  graph.addLink(node3, node2);
+  graph.addLink(node3, node4);
 
   return graph;
 }
