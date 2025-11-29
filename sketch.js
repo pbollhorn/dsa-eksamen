@@ -37,6 +37,7 @@ function buildGraph() {
   graph.addLink(node1, node2);
   graph.addLink(node2, node3);
   graph.addLink(node3, node4);
+  graph.addLink(node4, node3);
 
   return graph;
 }
@@ -60,16 +61,16 @@ function draw() {
     background("white");
   }
 
-  // Draw the nodes
-  for (const node of graph.nodes) {
-    drawNode(node);
-  }
-
   // Draw the link
   for (const node of graph.nodes) {
     for (const otherNode of node.links) {
       drawLink(node, otherNode);
     }
+  }
+
+  // Draw the nodes
+  for (const node of graph.nodes) {
+    drawNode(node);
   }
 }
 
@@ -79,8 +80,10 @@ function drawNode(node) {
   fill("white");
   circle(node.x, node.y, 2 * NODE_RADIUS);
   if (DISPLAY_COORDINATES) {
-    fill("blue");
-    text(`${node.x}, ${node.y}`, node.x, node.y);
+    fill("red");
+    textSize(20);
+    textStyle(BOLD);
+    text(`(${node.x}, ${node.y})`, node.x, node.y);
   }
 }
 
