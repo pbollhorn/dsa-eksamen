@@ -1,10 +1,10 @@
 export default class Graph {
   constructor() {
-    this.nodes = [];
+    this.nodes = new Set();
   }
 
   addNode(node) {
-    this.nodes.push(node);
+    this.nodes.add(node);
   }
 
   // add link from nodeA to nodeB

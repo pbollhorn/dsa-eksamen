@@ -4,10 +4,10 @@ export default class Node {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.links = [];
+    this.links = new Set();
   }
 
   addLink(node) {
-    this.links.push(node);
+    this.links.add(node);
   }
 }

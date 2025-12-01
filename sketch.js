@@ -3,8 +3,6 @@ let Node;
 let graph;
 let bgImg;
 
-// let DISPLAY_COORDINATES = true;
-
 async function loadModules() {
   // Dynamically import Graph from the module
   let module = await import("./graph/graph.js");
