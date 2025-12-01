@@ -1,5 +1,3 @@
-let Graph;
-let Node;
 let graph;
 let bgImg;
 
