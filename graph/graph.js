@@ -1,3 +1,5 @@
+import Node from "./node_.js";
+
 export default class Graph {
   constructor() {
     this.nodes = new Map();

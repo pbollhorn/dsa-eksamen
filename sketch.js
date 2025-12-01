@@ -7,13 +7,7 @@ async function loadModules() {
   // Dynamically import buildGraph from the module
   let module = await import("./buildgraph.js");
   buildGraph = module.default; // default export
-
-  // Dynamically import Node from the module
-  module = await import("./graph/node_.js");
-  Node = module.default; // default export
 }
-
-
 
 // setup() is called once when the sketch begins running
 async function setup() {
