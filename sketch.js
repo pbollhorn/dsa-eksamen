@@ -31,6 +31,7 @@ function buildGraph() {
   graph.addLink("A", "B");
   graph.addLink("B", "C");
   graph.addLink("C", "D");
+  graph.addLink("D", "G");
   graph.addLink("D", "E");
   graph.addLink("E", "D");
   graph.addLink("E", "F");
@@ -38,6 +39,7 @@ function buildGraph() {
   graph.addLink("G", "H");
   graph.addLink("H", "I");
   graph.addLink("I", "B");
+  graph.addLink("H", "A");
 
   // This code should not be here in finished project
   graph.bfs("A", "B");
