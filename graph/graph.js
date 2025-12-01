@@ -1,24 +1,28 @@
 export default class Graph {
   constructor() {
-    this.nodes = new Set();
+    this.nodes = new Map();
   }
 
-  addNode(node) {
-    this.nodes.add(node);
+  addNode(name, x, y) {
+    this.nodes.set(name, new Node(x, y));
   }
 
-  // add link from nodeA to nodeB
-  addLink(nodeA, nodeB) {
+  // add link from node to another node
+  addLink(from, to) {
+    const nodeA = this.nodes.get(from);
+    const nodeB = this.nodes.get(to);
     nodeA.addLink(nodeB);
   }
 
   // My implementation of BFS
-  bfs(startNode, goalNode) {
+  bfs(startName, goalName) {
     console.log("BFS stated");
 
-    const queue = []; // JavaScript array used as a queue
-    const visited = new Set();
+    const startNode = this.nodes.get(startName);
+    const goalNode = this.nodes.get(goalName);
 
+    const visited = new Set();
+    const queue = []; // JavaScript array used as a queue
     queue.push(startNode);
 
     while (queue.length > 0) {

@@ -16,45 +16,31 @@ async function loadModules() {
 function buildGraph() {
   const graph = new Graph();
 
-  // Nogle løse Nodes
-  const node0 = new Node(130, 80);
-  const node1 = new Node(130, 270);
-  const node2 = new Node(130, 420);
-  const node3 = new Node(675, 420);
-  const node4 = new Node(1280, 420);
-  const node5 = new Node(1280, 80);
-  const node6 = new Node(675, 80);
-  const node7 = new Node(570, 80);
-  const node8 = new Node(420, 270);
-
-  // Sæt nodes ind i grafen
-  graph.addNode(node0);
-  graph.addNode(node1);
-  graph.addNode(node2);
-  graph.addNode(node3);
-  graph.addNode(node4);
-  graph.addNode(node5);
-  graph.addNode(node6);
-  graph.addNode(node7);
-  graph.addNode(node8);
+  // Put unconnected nodes ind i grafren
+  graph.addNode("A", 130, 80);
+  graph.addNode("B", 130, 270);
+  graph.addNode("C", 130, 420);
+  graph.addNode("D", 675, 420);
+  graph.addNode("E", 1280, 420);
+  graph.addNode("F", 1280, 80);
+  graph.addNode("G", 675, 80);
+  graph.addNode("H", 570, 80);
+  graph.addNode("I", 420, 270);
 
   // Lav links imellem grafens nodes
-  graph.addLink(node0, node1);
-  graph.addLink(node1, node2);
-  graph.addLink(node2, node3);
-  graph.addLink(node3, node4);
-  graph.addLink(node4, node3);
-  graph.addLink(node4, node3);
-  graph.addLink(node4, node5);
-  graph.addLink(node5, node6);
-  graph.addLink(node3, node6);
-  graph.addLink(node6, node7);
-  graph.addLink(node7, node8);
-  graph.addLink(node8, node1);
-  graph.addLink(node7, node0);
+  graph.addLink("A", "B");
+  graph.addLink("B", "C");
+  graph.addLink("C", "D");
+  graph.addLink("D", "E");
+  graph.addLink("E", "D");
+  graph.addLink("E", "F");
+  graph.addLink("F", "G");
+  graph.addLink("G", "H");
+  graph.addLink("H", "I");
+  graph.addLink("I", "B");
 
   // This code should not be here in finished project
-  graph.bfs(node0, node7);
+  graph.bfs("A", "B");
 
   return graph;
 }
@@ -79,14 +65,14 @@ function draw() {
   }
 
   // Draw the link
-  for (const node of graph.nodes) {
+  for (const node of graph.nodes.values()) {
     for (const otherNode of node.links) {
       drawLink(node, otherNode);
     }
   }
 
   // Draw the nodes
-  for (const node of graph.nodes) {
+  for (const node of graph.nodes.values()) {
     drawNode(node);
   }
 }
