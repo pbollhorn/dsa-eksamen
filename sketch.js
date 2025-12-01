@@ -3,7 +3,7 @@ let bgImg;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
-  let module = await import("./buildgraph.js");
+  const module = await import("./buildgraph.js");
   buildGraph = module.default; // default export
 }
 
