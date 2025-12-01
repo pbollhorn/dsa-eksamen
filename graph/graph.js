@@ -4,7 +4,7 @@ export default class Graph {
   }
 
   addNode(name, x, y) {
-    this.nodes.set(name, new Node(x, y));
+    this.nodes.set(name, new Node(name, x, y));
   }
 
   // add link from node to another node

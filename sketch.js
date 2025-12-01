@@ -88,6 +88,12 @@ function drawNode(node) {
     textStyle(BOLD);
     text(`(${node.x}, ${node.y})`, node.x, node.y);
   }
+  if (DISPLAY_NAMES) {
+    fill("red");
+    textSize(20);
+    textStyle(BOLD);
+    text(`name`, node.x, node.y);
+  }
 }
 
 function drawLink(nodeA, nodeB) {
