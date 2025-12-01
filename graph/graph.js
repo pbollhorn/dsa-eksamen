@@ -19,7 +19,7 @@ export default class Graph {
     console.log(goalNode);
 
     const queue = []; // JavaScript array used as a queue
-    const visited = Set();
+    const visited = new Set();
 
     queue.push(startNode);
   }
