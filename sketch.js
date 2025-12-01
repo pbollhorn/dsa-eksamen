@@ -92,7 +92,7 @@ function drawNode(node) {
     fill("red");
     textSize(20);
     textStyle(BOLD);
-    text(`name`, node.x, node.y);
+    text(`${node.name}`, node.x, node.y);
   }
 }
 
