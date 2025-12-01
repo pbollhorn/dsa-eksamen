@@ -14,10 +14,13 @@ export default class Graph {
 
   // My implementation of BFS
   bfs(startNode, goalNode) {
+    console.log("Hello from BFS!!!");
+    console.log(startNode);
+    console.log(goalNode);
+
     const queue = []; // JavaScript array used as a queue
     const visited = Set();
 
     queue.push(startNode);
-
   }
 }

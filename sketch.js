@@ -55,6 +55,9 @@ function buildGraph() {
   graph.addLink(node8, node1);
   graph.addLink(node7, node0);
 
+  // This code should not be here in finished project
+  graph.bfs(node0, node7);
+
   return graph;
 }
 
