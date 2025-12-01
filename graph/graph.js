@@ -11,4 +11,13 @@ export default class Graph {
   addLink(nodeA, nodeB) {
     nodeA.addLink(nodeB);
   }
+
+  // My implementation of BFS
+  bfs(startNode, goalNode) {
+    const queue = []; // JavaScript array used as a queue
+    const visited = Set();
+
+    queue.push(startNode);
+
+  }
 }
