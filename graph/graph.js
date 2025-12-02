@@ -1,5 +1,3 @@
-import Node from "./node_.js";
-
 export default class Graph {
   constructor() {
     this.nodes = new Map();
@@ -40,5 +38,19 @@ export default class Graph {
         }
       }
     }
+  }
+}
+
+
+export class Node {
+  constructor(name, x, y) {
+    this.name = name;
+    this.x = x;
+    this.y = y;
+    this.links = new Set();
+  }
+
+  addLink(node) {
+    this.links.add(node);
   }
 }
