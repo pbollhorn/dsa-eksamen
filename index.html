@@ -15,7 +15,18 @@
       let DISPLAY_NAMES = false;
       let DISPLAY_COORDINATES = false;
       let DISPLAY_BACKGROUND = true;
+
+      function startSearch() {
+        const startNodeInput = document.getElementById("startNodeInput");
+        const goalNodeInput = document.getElementById("goalNodeInput");
+        const startSearchButton = document.getElementById("startSearchButton");
+        startNodeInput.disabled = true;
+        goalNodeInput.disabled = true;
+        startSearchButton.disabled = true;
+        bfs(startNodeInput.value, goalNodeInput.value);
+      }
     </script>
+
   </head>
 
   <body>
@@ -29,11 +40,11 @@
     </button>
     </br>
     </br>
-    Start node: <input type="text">
+    Start node: <input type="text" id="startNodeInput">
     </br>
-    Goal node: <input type="text">
+    Goal node: <input type="text" id="goalNodeInput">
     </br>
-    <button onclick="bfs('A','H')">Start search</button>
+    <button onclick="startSearch()" id="startSearchButton">Start search</button>
     </br>
     </br>
     Current node:
