@@ -117,12 +117,11 @@ async function bfs(startName, goalName) {
       visited.add(currentNode);
     }
 
-    await waitForTimer();
+    // Wait for next step button press
+    await new Promise((resolve) => {
+      nextStepPromiseResolve = resolve; // Store the resolver for later use
+    });
   }
-}
-
-async function waitForTimer() {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 function updateDisplay(currentNode, queue, visited) {

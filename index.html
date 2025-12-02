@@ -27,6 +27,17 @@
         bfs(startNodeInput.value, goalNodeInput.value);
         nextStepButton.disabled = false;
       }
+
+
+      // Track whether the next step button has been pressed
+      let nextStepPromiseResolve = null;
+
+      // Function to trigger the promise resolution when the "Next step" button is clicked
+      function nextStep() {
+        if (nextStepPromiseResolve) {
+          nextStepPromiseResolve();  // Resolve the promise, which will allow BFS to proceed
+        }
+}
     </script>
 
   </head>
