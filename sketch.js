@@ -88,14 +88,15 @@ function drawLink(nodeA, nodeB) {
 
 // My implementation of BFS
 async function bfs(startName, goalName) {
-  console.log("BFS stated");
-
   const startNode = graph.nodes.get(startName);
   const goalNode = graph.nodes.get(goalName);
 
   const visited = new Set();
   const queue = []; // JavaScript array used as a queue
   queue.push(startNode);
+
+  updateDisplay({ name: "" }, queue, visited);
+  await nextStepButtonClick();
 
   while (queue.length > 0) {
     const currentNode = queue.shift();
@@ -107,7 +108,8 @@ async function bfs(startName, goalName) {
     }
 
     if (currentNode === goalNode) {
-      console.log("Goal Node Found!");
+      document.getElementById("nextStepButton").disabled = true;
+      alert("Goal Node Found!");
       return;
     } else {
       queue.push(...currentNode.links);
@@ -124,4 +126,10 @@ function updateDisplay(currentNode, queue, visited) {
   const visitedDisplay = document.getElementById("visitedDisplay");
 
   currentNodeDisplay.textContent = currentNode.name;
+
+  const queueAsString = queue.map((node) => node.name).join(",");
+  queueDisplay.textContent = queueAsString;
+
+  const visitedAsString = [...visited].map((node) => node.name).join(",");
+  visitedDisplay.textContent = visitedAsString;
 }
