@@ -27,20 +27,24 @@ export default class Graph {
 
     while (queue.length > 0) {
       const node = queue.shift();
-      console.log(node);
-      if (!visited.has(node)) {
-        if (node === goalNode) {
-          console.log("Goal Node Found!");
-          return;
-        } else {
-          queue.push(...node.links);
-          visited.add(node);
-        }
+      console.log("current node: ", node.name);
+      console.log("queue: ", queue);
+      console.log("visited: ", visited);
+
+      if (visited.has(node)) {
+        continue;
+      }
+
+      if (node === goalNode) {
+        console.log("Goal Node Found!");
+        return;
+      } else {
+        queue.push(...node.links);
+        visited.add(node);
       }
     }
   }
 }
-
 
 export class Node {
   constructor(name, x, y) {
