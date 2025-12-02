@@ -20,10 +20,12 @@
         const startNodeInput = document.getElementById("startNodeInput");
         const goalNodeInput = document.getElementById("goalNodeInput");
         const startSearchButton = document.getElementById("startSearchButton");
+        const nextStepButton = document.getElementById("nextStepButton");
         startNodeInput.disabled = true;
         goalNodeInput.disabled = true;
         startSearchButton.disabled = true;
         bfs(startNodeInput.value, goalNodeInput.value);
+        nextStepButton.disabled = false;
       }
     </script>
 
@@ -45,6 +47,7 @@
     Goal node: <input type="text" id="goalNodeInput">
     </br>
     <button onclick="startSearch()" id="startSearchButton">Start search</button>
+    <button onclick="nextStep()" id="nextStepButton" disabled>Next step</button>
     </br>
     </br>
     Current node: <span id="currentNodeDisplay"></span>
