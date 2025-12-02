@@ -42,7 +42,12 @@ function draw() {
 const NODE_RADIUS = 10;
 
 function drawNode(node) {
-  fill("white");
+  if (node.visited === false) {
+    fill("white");
+  } else {
+    fill("blue");
+  }
+
   circle(node.x, node.y, 2 * NODE_RADIUS);
   if (DISPLAY_COORDINATES) {
     fill("red");
@@ -114,6 +119,7 @@ async function bfs(startName, goalName) {
     } else {
       queue.push(...currentNode.links);
       visited.add(currentNode);
+      currentNode.visited = true;
     }
 
     await nextStepButtonClick();
