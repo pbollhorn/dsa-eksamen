@@ -98,21 +98,31 @@ function bfs(startName, goalName) {
   queue.push(startNode);
 
   while (queue.length > 0) {
-    const node = queue.shift();
-    console.log("current node: ", node.name);
+    const currentNode = queue.shift();
+    console.log("current node: ", currentNode.name);
     console.log("queue: ", queue);
     console.log("visited: ", visited);
 
-    if (visited.has(node)) {
+    updateDisplay(currentNode, queue, visited);
+
+    if (visited.has(currentNode)) {
       continue;
     }
 
-    if (node === goalNode) {
+    if (currentNode === goalNode) {
       console.log("Goal Node Found!");
       return;
     } else {
-      queue.push(...node.links);
-      visited.add(node);
+      queue.push(...currentNode.links);
+      visited.add(currentNode);
     }
   }
+}
+
+function updateDisplay(currentNode, queue, visited) {
+  const currentNodeDisplay = document.getElementById("currentNodeDisplay");
+  const queueDisplay = document.getElementById("queueDisplay");
+  const visitedDisplay = document.getElementById("visitedDisplay");
+
+  currentNodeDisplay.textContent = currentNode.name;
 }
