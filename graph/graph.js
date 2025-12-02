@@ -20,6 +20,7 @@ export class Node {
     this.name = name;
     this.x = x;
     this.y = y;
+    this.visited = false;
     this.links = new Set();
   }
 
