@@ -115,10 +115,14 @@ async function bfs(startName, goalName) {
     }
 
     // Wait for next step button press
-    await new Promise((resolve) => {
-      nextStepPromiseResolve = resolve; // Store the resolver for later use
-    });
+    await nextStepButtonPress();
   }
+}
+
+async function nextStepButtonPress() {
+  return new Promise((resolve) => {
+    nextStepPromiseResolve = resolve; // Store the resolver for later use
+  });
 }
 
 function updateDisplay(currentNode, queue, visited) {
