@@ -5,8 +5,10 @@ let bgImg;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
-  const module = await import("./buildgraph.js");
+  let module = await import("./buildgraph.js");
   buildGraph = module.default; // default export
+  module = await import("./priorityqueue/priorityqueue.js");
+  PriorityQueue = module.default; // default export
 }
 
 // setup() is called once when the sketch begins running
@@ -138,13 +140,13 @@ async function bfs(startName, goalName) {
 
     await nextStepButtonClick();
   }
+}
 
-  // My implementaion of A* Search
-  async function aStarSearch(startName, goalName) {
+// My implementaion of A* Search
+async function aStarSearch(startName, goalName) {
+  const startNode = graph.nodes.get(startName);
+  const goalNode = graph.nodes.get(goalName);
 
-
-
-
-
-  }
+  const priorityQueue = new PriorityQueue();
+  priorityQueue.print();
 }
