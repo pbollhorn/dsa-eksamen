@@ -119,12 +119,6 @@ async function bfs(startName, goalName) {
   }
 }
 
-async function nextStepButtonPress() {
-  return new Promise((resolve) => {
-    nextStepPromiseResolve = resolve; // Store the resolver for later use
-  });
-}
-
 function updateDisplay(currentNode, queue, visited) {
   const currentNodeDisplay = document.getElementById("currentNodeDisplay");
   const queueDisplay = document.getElementById("queueDisplay");

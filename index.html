@@ -38,6 +38,12 @@
           nextStepPromiseResolve();  // Resolve the promise, which will allow BFS to proceed
         }
       }
+
+      async function nextStepButtonPress() {
+        return new Promise((resolve) => {
+          nextStepPromiseResolve = resolve; // Store the resolver for later use
+      });
+}
     </script>
 
   </head>
