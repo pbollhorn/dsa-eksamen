@@ -159,4 +159,12 @@ async function aStarSearch(startName, goalName) {
       return;
     }
   }
+
+  // loop over (out) neighbors
+  for (const neighbor of currentNode.links) {
+    // d is the weight of the edge from current to neighbor
+    const d = Math.sqrt(
+      (currentNode.x - neighbor.x) ** 2 + (currentNode.y - neighbor.y) ** 2
+    );
+  }
 }
