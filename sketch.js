@@ -85,3 +85,34 @@ function drawLink(nodeA, nodeB) {
     endY - arrowSize * sin(a + PI / 6)
   );
 }
+
+// My implementation of BFS
+function bfs(startName, goalName) {
+  console.log("BFS stated");
+
+  const startNode = graph.nodes.get(startName);
+  const goalNode = graph.nodes.get(goalName);
+
+  const visited = new Set();
+  const queue = []; // JavaScript array used as a queue
+  queue.push(startNode);
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+    console.log("current node: ", node.name);
+    console.log("queue: ", queue);
+    console.log("visited: ", visited);
+
+    if (visited.has(node)) {
+      continue;
+    }
+
+    if (node === goalNode) {
+      console.log("Goal Node Found!");
+      return;
+    } else {
+      queue.push(...node.links);
+      visited.add(node);
+    }
+  }
+}

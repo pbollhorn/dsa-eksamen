@@ -28,8 +28,5 @@ export default function buildGraph() {
   graph.addLink("I", "B");
   graph.addLink("H", "A");
 
-  // This code should not be here in finished project
-  graph.bfs("A", "H");
-
   return graph;
 }
