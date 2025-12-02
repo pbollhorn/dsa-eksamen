@@ -16,7 +16,8 @@
       let DISPLAY_COORDINATES = false;
       let DISPLAY_BACKGROUND = true;
 
-      function startSearch() {
+      function startSearch()
+      {
         const startNodeInput = document.getElementById("startNodeInput");
         const goalNodeInput = document.getElementById("goalNodeInput");
         const startSearchButton = document.getElementById("startSearchButton");
@@ -29,21 +30,16 @@
       }
 
 
-      // Track whether the next step button has been pressed
       let nextStepPromiseResolve = null;
 
-      // Function to trigger the promise resolution when the "Next step" button is clicked
-      function nextStep() {
-        if (nextStepPromiseResolve) {
-          nextStepPromiseResolve();  // Resolve the promise, which will allow BFS to proceed
+      async function nextStepButtonClick()
+      {
+        if (nextStepPromiseResolve!==null)
+        {
+          nextStepPromiseResolve();  // Resolve the promise
         }
+        return new Promise( (resolve) => { nextStepPromiseResolve = resolve; } );
       }
-
-      async function nextStepButtonPress() {
-        return new Promise((resolve) => {
-          nextStepPromiseResolve = resolve; // Store the resolver for later use
-      });
-}
     </script>
 
   </head>
@@ -64,7 +60,7 @@
     Goal node: <input type="text" id="goalNodeInput">
     </br>
     <button onclick="startSearch()" id="startSearchButton">Start search</button>
-    <button onclick="nextStep()" id="nextStepButton" disabled>Next step</button>
+    <button onclick="nextStepButtonClick()" id="nextStepButton" disabled>Next step</button>
     </br>
     </br>
     Current node: <span id="currentNodeDisplay"></span>

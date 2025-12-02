@@ -114,8 +114,7 @@ async function bfs(startName, goalName) {
       visited.add(currentNode);
     }
 
-    // Wait for next step button press
-    await nextStepButtonPress();
+    await nextStepButtonClick();
   }
 }
 
