@@ -13,7 +13,6 @@ export default class Graph {
     const nodeB = this.nodes.get(to);
     nodeA.addLink(nodeB);
   }
-
 }
 
 export class Node {

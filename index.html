@@ -16,8 +16,7 @@
       let DISPLAY_COORDINATES = false;
       let DISPLAY_BACKGROUND = true;
 
-      function startSearch()
-      {
+      function startSearchButtonClick() {
         const startNodeInput = document.getElementById("startNodeInput");
         const goalNodeInput = document.getElementById("goalNodeInput");
         const startSearchButton = document.getElementById("startSearchButton");
@@ -32,10 +31,8 @@
 
       let nextStepPromiseResolve = null;
 
-      async function nextStepButtonClick()
-      {
-        if (nextStepPromiseResolve!==null)
-        {
+      async function nextStepButtonClick() {
+        if (nextStepPromiseResolve!==null) {
           nextStepPromiseResolve();  // Resolve the promise
         }
         return new Promise( (resolve) => { nextStepPromiseResolve = resolve; } );
@@ -59,7 +56,7 @@
     </br>
     Goal node: <input type="text" id="goalNodeInput">
     </br>
-    <button onclick="startSearch()" id="startSearchButton">Start search</button>
+    <button onclick="startSearchButtonClick()" id="startSearchButton">Start search</button>
     <button onclick="nextStepButtonClick()" id="nextStepButton" disabled>Next step</button>
     </br>
     </br>
