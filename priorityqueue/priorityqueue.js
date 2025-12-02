@@ -7,19 +7,16 @@ export default class PriorityQueue {
   }
 
   enqueue(node) {
-    for (let i = 0; i < this.#array.length; i++) {
-      if (node.fscore < this.#array[i].fscore) {
-        this.#array.splice(i, 0, node);
-      }
-    }
-  }
-
-  size() {
-    return this.#array.length;
+    this.#array.push(node);
+    this.#array.sort((a, b) => b.fscore - a.fscore);
   }
 
   dequeue() {
     return this.#array.pop();
+  }
+
+  size() {
+    return this.#array.length;
   }
 
   print() {
