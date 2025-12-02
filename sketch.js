@@ -1,3 +1,5 @@
+const NODE_RADIUS = 15
+
 let graph;
 let bgImg;
 
@@ -39,27 +41,25 @@ function draw() {
   }
 }
 
-const NODE_RADIUS = 10;
-
 function drawNode(node) {
   if (node.visited === false) {
     fill("white");
   } else {
-    fill("blue");
+    fill("cyan");
   }
 
   circle(node.x, node.y, 2 * NODE_RADIUS);
+  fill("black");
+  textSize(1.4 * NODE_RADIUS);
+  textStyle(BOLD);
+  textAlign(CENTER, CENTER);
+  text(`${node.name}`, node.x, node.y);
+
   if (DISPLAY_COORDINATES) {
     fill("red");
     textSize(20);
     textStyle(BOLD);
     text(`(${node.x}, ${node.y})`, node.x, node.y);
-  }
-  if (DISPLAY_NAMES) {
-    fill("red");
-    textSize(20);
-    textStyle(BOLD);
-    text(`${node.name}`, node.x, node.y);
   }
 }
 
