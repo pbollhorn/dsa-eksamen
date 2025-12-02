@@ -99,9 +99,6 @@ async function bfs(startName, goalName) {
 
   while (queue.length > 0) {
     const currentNode = queue.shift();
-    console.log("current node: ", currentNode.name);
-    console.log("queue: ", queue);
-    console.log("visited: ", visited);
 
     updateDisplay(currentNode, queue, visited);
 
