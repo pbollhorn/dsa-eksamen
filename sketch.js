@@ -2,6 +2,7 @@ const NODE_RADIUS = 15;
 
 let graph;
 let bgImg;
+let PriorityQueue;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -148,5 +149,14 @@ async function aStarSearch(startName, goalName) {
   const goalNode = graph.nodes.get(goalName);
 
   const priorityQueue = new PriorityQueue();
-  priorityQueue.print();
+
+  priorityQueue.enqueue(startNode);
+
+  while (priorityQueue.size() > 0) {
+    const currentNode = priorityQueue.dequeue();
+    if (currentNode === goalNode) {
+      console.log("Goal is found!");
+      return;
+    }
+  }
 }
