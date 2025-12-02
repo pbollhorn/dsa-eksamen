@@ -1,4 +1,4 @@
-const NODE_RADIUS = 15
+const NODE_RADIUS = 15;
 
 let graph;
 let bgImg;
@@ -91,6 +91,20 @@ function drawLink(nodeA, nodeB) {
   );
 }
 
+function updateDisplay(currentNode, queue, visited) {
+  const currentNodeDisplay = document.getElementById("currentNodeDisplay");
+  const queueDisplay = document.getElementById("queueDisplay");
+  const visitedDisplay = document.getElementById("visitedDisplay");
+
+  currentNodeDisplay.textContent = currentNode.name;
+
+  const queueAsString = queue.map((node) => node.name).join(",");
+  queueDisplay.textContent = queueAsString;
+
+  const visitedAsString = [...visited].map((node) => node.name).join(",");
+  visitedDisplay.textContent = visitedAsString;
+}
+
 // My implementation of BFS
 async function bfs(startName, goalName) {
   const startNode = graph.nodes.get(startName);
@@ -124,18 +138,13 @@ async function bfs(startName, goalName) {
 
     await nextStepButtonClick();
   }
-}
 
-function updateDisplay(currentNode, queue, visited) {
-  const currentNodeDisplay = document.getElementById("currentNodeDisplay");
-  const queueDisplay = document.getElementById("queueDisplay");
-  const visitedDisplay = document.getElementById("visitedDisplay");
+  // My implementaion of A* Search
+  async function aStarSearch(startName, goalName) {
 
-  currentNodeDisplay.textContent = currentNode.name;
 
-  const queueAsString = queue.map((node) => node.name).join(",");
-  queueDisplay.textContent = queueAsString;
 
-  const visitedAsString = [...visited].map((node) => node.name).join(",");
-  visitedDisplay.textContent = visitedAsString;
+
+
+  }
 }
