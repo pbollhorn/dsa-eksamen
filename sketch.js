@@ -152,19 +152,26 @@ async function aStarSearch(startName, goalName) {
 
   priorityQueue.enqueue(startNode);
 
+  const gScore = new Map();
+  for (const name of graph.nodes.keys()) {
+    gScore.set(name, Infinity);
+  }
+  gScore.set(startName, 0);
+  console.log(gScore);
+
   while (priorityQueue.size() > 0) {
     const currentNode = priorityQueue.dequeue();
     if (currentNode === goalNode) {
       console.log("Goal is found!");
       return;
-    }
-  }
 
-  // loop over (out) neighbors
-  for (const neighbor of currentNode.links) {
-    // d is the weight of the edge from current to neighbor
-    const d = Math.sqrt(
-      (currentNode.x - neighbor.x) ** 2 + (currentNode.y - neighbor.y) ** 2
-    );
+      // loop over (out) neighbors
+      for (const neighbor of currentNode.links) {
+        // d is the weight of the edge from current to neighbor
+        const d = Math.sqrt(
+          (currentNode.x - neighbor.x) ** 2 + (currentNode.y - neighbor.y) ** 2
+        );
+      }
+    }
   }
 }

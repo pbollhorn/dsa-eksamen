@@ -1,6 +1,6 @@
 export default class Graph {
   constructor() {
-    this.nodes = new Map();
+    this.nodes = new Map(); // key: name, value: Node object
   }
 
   addNode(name, x, y) {
