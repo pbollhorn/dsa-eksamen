@@ -87,7 +87,7 @@ function drawLink(nodeA, nodeB) {
 }
 
 // My implementation of BFS
-function bfs(startName, goalName) {
+async function bfs(startName, goalName) {
   console.log("BFS stated");
 
   const startNode = graph.nodes.get(startName);
@@ -116,7 +116,13 @@ function bfs(startName, goalName) {
       queue.push(...currentNode.links);
       visited.add(currentNode);
     }
+
+    await waitForTimer();
   }
+}
+
+async function waitForTimer() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 function updateDisplay(currentNode, queue, visited) {
