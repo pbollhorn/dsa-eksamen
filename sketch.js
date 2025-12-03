@@ -167,7 +167,6 @@ async function aStarSearch(startName, goalName) {
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
     const current = priorityQueue.dequeue();
-    // console.log(current.name);
 
     if (current === goal) {
       console.log("Goal is found!");
@@ -178,11 +177,8 @@ async function aStarSearch(startName, goalName) {
 
     // loop over (out) neighbors
     for (const neighbor of current.links) {
-      // d is the weight of the edge from current to neighbor
-      const d = distance(current, neighbor);
-
       // tentative_gScore is the distance from start to the neighbor through current
-      tentative_gScore = current.gScore + d;
+      tentative_gScore = current.gScore + distance(current, neighbor);
 
       if (tentative_gScore < neighbor.gScore) {
         // This path to neighbor is better than any previous one. Record it!
