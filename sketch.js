@@ -18,6 +18,17 @@ async function setup() {
   await loadModules();
   graph = buildGraph();
   createCanvas(1400, 600);
+
+  for (const node of graph.nodes.values()) {
+    let option = document.createElement("option");
+    option.value = node.name;
+    option.textContent = node.name;
+    startNodeInput.appendChild(option);
+    option = document.createElement("option");
+    option.value = node.name;
+    option.textContent = node.name;
+    goalNodeInput.appendChild(option);
+  }
 }
 
 // draw() is run repeatedly approx. 60 times per second
