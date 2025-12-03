@@ -23,11 +23,11 @@ async function setup() {
     let option = document.createElement("option");
     option.value = node.name;
     option.textContent = node.name;
-    startNodeInput.appendChild(option);
+    startNodeSelect.appendChild(option);
     option = document.createElement("option");
     option.value = node.name;
     option.textContent = node.name;
-    goalNodeInput.appendChild(option);
+    goalNodeSelect.appendChild(option);
   }
 }
 

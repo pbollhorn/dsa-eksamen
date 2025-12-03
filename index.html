@@ -17,14 +17,14 @@
       let DISPLAY_BACKGROUND = true;
 
       function startSearchButtonClick() {
-        const startNodeInput = document.getElementById("startNodeInput");
-        const goalNodeInput = document.getElementById("goalNodeInput");
+        const startNodeSelect = document.getElementById("startNodeSelect");
+        const goalNodeSelect = document.getElementById("goalNodeSelect");
         const startSearchButton = document.getElementById("startSearchButton");
         const nextStepButton = document.getElementById("nextStepButton");
-        startNodeInput.disabled = true;
-        goalNodeInput.disabled = true;
+        startNodeSelect.disabled = true;
+        goalNodeSelect.disabled = true;
         startSearchButton.disabled = true;
-        aStarSearch(startNodeInput.value, goalNodeInput.value);
+        aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         nextStepButton.disabled = false;
       }
 
@@ -51,8 +51,8 @@
     </button>
     </br>
     </br>
-    Start node: <select id="startNodeInput"></select>
-    Goal node: <select id="goalNodeInput"></select>
+    Start node: <select id="startNodeSelect"></select>
+    Goal node: <select id="goalNodeSelect"></select>
     </br>
     <button onclick="startSearchButtonClick()" id="startSearchButton">Start search</button>
     <button onclick="nextStepButtonClick()" id="nextStepButton" disabled>Next step</button>
