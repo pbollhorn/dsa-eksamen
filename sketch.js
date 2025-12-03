@@ -154,8 +154,8 @@ async function aStarSearch(startName, goalName) {
   const start = graph.nodes.get(startName);
   const goal = graph.nodes.get(goalName);
 
-  // Heuristic function. Estimates the cost to reach goal from node.
-  function h(node) {
+  // Heuristic function: Estimates the cost to reach goal from node
+  function heuristic(node) {
     return distance(node, goal);
   }
 
@@ -164,15 +164,11 @@ async function aStarSearch(startName, goalName) {
 
   const cameFrom = new Map();
 
-  // gScore
   start.gScore = 0;
-
-  // fScore
-  start.fScore = h(start);
+  start.fScore = start.gScore + heuristic(start);
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    
     const current = priorityQueue.dequeue();
     current.color = "lightblue";
 
@@ -194,7 +190,7 @@ async function aStarSearch(startName, goalName) {
         // This path to neighbor is better than any previous one. Record it!
         cameFrom.set(neighbor, current);
         neighbor.gScore = tentative_gScore;
-        neighbor.fScore = tentative_gScore + h(neighbor);
+        neighbor.fScore = neighbor.gScore + heuristic(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
           priorityQueue.enqueue(neighbor);
         }
