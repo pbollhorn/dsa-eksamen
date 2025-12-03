@@ -145,16 +145,16 @@ async function bfs(startName, goalName) {
 
 // My implementation of A* Search
 async function aStarSearch(startName, goalName) {
-  const startNode = graph.nodes.get(startName);
-  const goalNode = graph.nodes.get(goalName);
+  const start = graph.nodes.get(startName);
+  const goal = graph.nodes.get(goalName);
 
   // Heuristic function. Estimates the cost to reach goal from node.
   function h(node) {
-    return distance(node, goalNode);
+    return distance(node, goal);
   }
 
   const priorityQueue = new PriorityQueue();
-  priorityQueue.enqueue(startNode);
+  priorityQueue.enqueue(start);
 
   const cameFrom = new Map();
 
@@ -171,15 +171,15 @@ async function aStarSearch(startName, goalName) {
   for (const name of graph.nodes.keys()) {
     fScore.set(name, Infinity);
   }
-  fScore.set(startName, h(startNode));
+  fScore.set(startName, h(start));
   console.log(fScore);
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
     const current = priorityQueue.dequeue();
-    console.log(current.name);
+    // console.log(current.name);
 
-    if (current === goalNode) {
+    if (current === goal) {
       console.log("Goal is found!");
       const path = reconstruct_path(cameFrom, current);
       console.log(path);

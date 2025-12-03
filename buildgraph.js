@@ -12,21 +12,21 @@ export default function buildGraph() {
   graph.addNode("F", 1280, 80);
   graph.addNode("G", 675, 80);
   graph.addNode("H", 570, 80);
-  // graph.addNode("I", 420, 270);
+  graph.addNode("I", 420, 270);
 
   // Lav links imellem grafens nodes
   graph.addLink("A", "B");
   graph.addLink("B", "C");
   graph.addLink("C", "D");
-  graph.addLink("D", "G");
   graph.addLink("D", "E");
+  graph.addLink("D", "G");
   graph.addLink("E", "D");
   graph.addLink("E", "F");
   graph.addLink("F", "G");
   graph.addLink("G", "H");
-  // graph.addLink("H", "I");
-  // graph.addLink("I", "B");
   graph.addLink("H", "A");
+  graph.addLink("H", "I");
+  graph.addLink("I", "B");
 
   return graph;
 }
