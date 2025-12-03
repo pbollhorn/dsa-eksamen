@@ -143,7 +143,7 @@ async function bfs(startName, goalName) {
   }
 }
 
-// My implementaion of A* Search
+// My implementation of A* Search
 async function aStarSearch(startName, goalName) {
   const startNode = graph.nodes.get(startName);
   const goalNode = graph.nodes.get(goalName);
@@ -154,8 +154,9 @@ async function aStarSearch(startName, goalName) {
   }
 
   const priorityQueue = new PriorityQueue();
-
   priorityQueue.enqueue(startNode);
+
+  const cameFrom = new Map();
 
   // gScore map
   const gScore = new Map();
@@ -173,6 +174,7 @@ async function aStarSearch(startName, goalName) {
   fScore.set(startName, h(startNode));
   console.log(fScore);
 
+  // while openSet is not empty
   while (priorityQueue.size() > 0) {
     const currentNode = priorityQueue.dequeue();
     console.log(currentNode.name);
@@ -192,7 +194,7 @@ async function aStarSearch(startName, goalName) {
 
       if (tentative_gScore < gScore.get(neighbor.name)) {
         // This path to neighbor is better than any previous one. Record it!
-        //////////cameFrom[neighbor] := current
+        cameFrom.set(neighbor, currentNode);
         gScore.set(neighbor.name, tentative_gScore);
         fScore.set(neighbor.name, tentative_gScore + h(neighbor));
         if (priorityQueue.includes(neighbor) === false) {
@@ -201,6 +203,17 @@ async function aStarSearch(startName, goalName) {
       }
     }
   }
+}
+
+function reconstruct_path(cameFrom, current) {
+  const total_path = [current];
+
+  while (cameFrom.has(current)) {
+    current = cameFrom.get(current);
+    total_path.unshift(current);
+  }
+
+  return total_path;
 }
 
 function distance(node1, node2) {
