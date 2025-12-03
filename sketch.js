@@ -176,27 +176,27 @@ async function aStarSearch(startName, goalName) {
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    const currentNode = priorityQueue.dequeue();
-    console.log(currentNode.name);
+    const current = priorityQueue.dequeue();
+    console.log(current.name);
 
-    if (currentNode === goalNode) {
+    if (current === goalNode) {
       console.log("Goal is found!");
-      const path = reconstruct_path(cameFrom, currentNode);
+      const path = reconstruct_path(cameFrom, current);
       console.log(path);
       return path;
     }
 
     // loop over (out) neighbors
-    for (const neighbor of currentNode.links) {
+    for (const neighbor of current.links) {
       // d is the weight of the edge from current to neighbor
-      const d = distance(currentNode, neighbor);
+      const d = distance(current, neighbor);
 
       // tentative_gScore is the distance from start to the neighbor through current
-      tentative_gScore = gScore.get(currentNode.name) + d;
+      tentative_gScore = gScore.get(current.name) + d;
 
       if (tentative_gScore < gScore.get(neighbor.name)) {
         // This path to neighbor is better than any previous one. Record it!
-        cameFrom.set(neighbor, currentNode);
+        cameFrom.set(neighbor, current);
         gScore.set(neighbor.name, tentative_gScore);
         fScore.set(neighbor.name, tentative_gScore + h(neighbor));
         if (priorityQueue.includes(neighbor) === false) {
