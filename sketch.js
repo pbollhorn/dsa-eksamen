@@ -181,7 +181,9 @@ async function aStarSearch(startName, goalName) {
 
     if (currentNode === goalNode) {
       console.log("Goal is found!");
-      return;
+      const path = reconstruct_path(cameFrom, currentNode);
+      console.log(path);
+      return path;
     }
 
     // loop over (out) neighbors
