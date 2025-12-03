@@ -20,7 +20,7 @@ export class Node {
     this.name = name;
     this.x = x;
     this.y = y;
-    this.visited = false;
+    this.color = "white";
     this.fScore = Infinity;
     this.gScore = Infinity;
     this.links = new Set();

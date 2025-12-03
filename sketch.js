@@ -56,12 +56,7 @@ function draw() {
 }
 
 function drawNode(node) {
-  if (node.visited === false) {
-    fill("white");
-  } else {
-    fill("cyan");
-  }
-
+  fill(node.color);
   circle(node.x, node.y, 2 * NODE_RADIUS);
   fill("black");
   textSize(1.4 * NODE_RADIUS);
@@ -177,7 +172,11 @@ async function aStarSearch(startName, goalName) {
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
+    
     const current = priorityQueue.dequeue();
+    current.color = "lightblue";
+
+    await nextStepButtonClick();
 
     if (current === goal) {
       console.log("Goal is found!");
