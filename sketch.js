@@ -148,10 +148,16 @@ async function aStarSearch(startName, goalName) {
   const startNode = graph.nodes.get(startName);
   const goalNode = graph.nodes.get(goalName);
 
+  // Heuristic function. Estimates the cost to reach goal from node.
+  function h(node) {
+    return distance(node, goalNode);
+  }
+
   const priorityQueue = new PriorityQueue();
 
   priorityQueue.enqueue(startNode);
 
+  // gScore map
   const gScore = new Map();
   for (const name of graph.nodes.keys()) {
     gScore.set(name, Infinity);
@@ -159,19 +165,44 @@ async function aStarSearch(startName, goalName) {
   gScore.set(startName, 0);
   console.log(gScore);
 
+  // fScore map
+  const fScore = new Map();
+  for (const name of graph.nodes.keys()) {
+    fScore.set(name, Infinity);
+  }
+  fScore.set(startName, h(startNode));
+  console.log(fScore);
+
   while (priorityQueue.size() > 0) {
     const currentNode = priorityQueue.dequeue();
+    console.log(currentNode.name);
+
     if (currentNode === goalNode) {
       console.log("Goal is found!");
       return;
+    }
 
-      // loop over (out) neighbors
-      for (const neighbor of currentNode.links) {
-        // d is the weight of the edge from current to neighbor
-        const d = Math.sqrt(
-          (currentNode.x - neighbor.x) ** 2 + (currentNode.y - neighbor.y) ** 2
-        );
+    // loop over (out) neighbors
+    for (const neighbor of currentNode.links) {
+      // d is the weight of the edge from current to neighbor
+      const d = distance(currentNode, neighbor);
+
+      // tentative_gScore is the distance from start to the neighbor through current
+      tentative_gScore = gScore.get(currentNode.name) + d;
+
+      if (tentative_gScore < gScore.get(neighbor.name)) {
+        // This path to neighbor is better than any previous one. Record it!
+        //////////cameFrom[neighbor] := current
+        gScore.set(neighbor.name, tentative_gScore);
+        fScore.set(neighbor.name, tentative_gScore + h(neighbor));
+        if (priorityQueue.includes(neighbor) === false) {
+          priorityQueue.enqueue(neighbor);
+        }
       }
     }
   }
+}
+
+function distance(node1, node2) {
+  return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
 }

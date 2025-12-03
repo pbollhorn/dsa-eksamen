@@ -1,5 +1,5 @@
 export default class PriorityQueue {
-  // array sorted by fscore from smallets to largest
+  // array sorted by fscore from smallest to largest
   #array;
 
   constructor() {
@@ -17,6 +17,10 @@ export default class PriorityQueue {
 
   size() {
     return this.#array.length;
+  }
+
+  includes(node) {
+    return this.#array.includes(node);
   }
 
   print() {
