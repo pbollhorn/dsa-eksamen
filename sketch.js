@@ -173,6 +173,7 @@ async function aStarSearch(startName, goalName) {
   }
   fScore.set(startName, h(start));
   console.log(fScore);
+  start.fscore = fScore.get(startName); // TODO: Clean this up
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
@@ -201,6 +202,7 @@ async function aStarSearch(startName, goalName) {
         fScore.set(neighbor.name, tentative_gScore + h(neighbor));
         if (priorityQueue.includes(neighbor) === false) {
           priorityQueue.enqueue(neighbor);
+          neighbor.fscore = fScore.get(neighbor.name); // TODO: Clean this up
         }
       }
     }
