@@ -8,7 +8,7 @@ export default class PriorityQueue {
 
   enqueue(node) {
     this.#array.push(node);
-    this.#array.sort((a, b) => b.fscore - a.fscore);
+    this.#array.sort((a, b) => b.fScore - a.fScore);
   }
 
   dequeue() {

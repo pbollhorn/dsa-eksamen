@@ -158,22 +158,11 @@ async function aStarSearch(startName, goalName) {
 
   const cameFrom = new Map();
 
-  // gScore map
-  const gScore = new Map();
-  for (const name of graph.nodes.keys()) {
-    gScore.set(name, Infinity);
-  }
-  gScore.set(startName, 0);
-  console.log(gScore);
+  // gScore
+  start.gScore = 0;
 
-  // fScore map
-  const fScore = new Map();
-  for (const name of graph.nodes.keys()) {
-    fScore.set(name, Infinity);
-  }
-  fScore.set(startName, h(start));
-  console.log(fScore);
-  start.fscore = fScore.get(startName); // TODO: Clean this up
+  // fScore
+  start.fScore = h(start);
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
@@ -193,16 +182,15 @@ async function aStarSearch(startName, goalName) {
       const d = distance(current, neighbor);
 
       // tentative_gScore is the distance from start to the neighbor through current
-      tentative_gScore = gScore.get(current.name) + d;
+      tentative_gScore = current.gScore + d;
 
-      if (tentative_gScore < gScore.get(neighbor.name)) {
+      if (tentative_gScore < neighbor.gScore) {
         // This path to neighbor is better than any previous one. Record it!
         cameFrom.set(neighbor, current);
-        gScore.set(neighbor.name, tentative_gScore);
-        fScore.set(neighbor.name, tentative_gScore + h(neighbor));
+        neighbor.gScore = tentative_gScore;
+        neighbor.fScore = tentative_gScore + h(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
           priorityQueue.enqueue(neighbor);
-          neighbor.fscore = fScore.get(neighbor.name); // TODO: Clean this up
         }
       }
     }

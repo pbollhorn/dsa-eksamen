@@ -21,6 +21,8 @@ export class Node {
     this.x = x;
     this.y = y;
     this.visited = false;
+    this.fScore = Infinity;
+    this.gScore = Infinity;
     this.links = new Set();
   }
 
