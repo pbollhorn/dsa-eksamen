@@ -62,9 +62,10 @@
     </br>
     Start node: <select id="startNodeSelect"></select>
     Goal node: <select id="goalNodeSelect"></select>
-    </br>
     <button onclick="startSearchButtonClick()" id="startSearchButton">Start search</button>
     <button onclick="nextStepButtonClick()" id="nextStepButton" disabled>Next step</button>
+    </br>
+    <span id="pathDisplay"></span>
     </br>
     </br>
     f(node) = g(node) + h(node)
@@ -78,7 +79,6 @@
     </br>
     Queue:<span id="queueDisplay"></span>  
     </br>
-    Path:<span id="pathDisplay"></span>
     </br>
     <script src="sketch.js"></script>
   </body>
