@@ -3,6 +3,9 @@ const NODE_RADIUS = 15;
 let graph;
 let bgImg;
 let PriorityQueue;
+let current;
+let start;
+let goal;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -33,7 +36,7 @@ async function setup() {
 
 // draw() is run repeatedly approx. 60 times per second
 function draw() {
-  // in case setup() has not finished yet
+  // return immediately in case setup() has not finished yet
   if (!graph) return;
 
   if (DISPLAY_BACKGROUND) {
@@ -53,16 +56,41 @@ function draw() {
   for (const node of graph.nodes.values()) {
     drawNode(node);
   }
+
+  // Draw start node and goal node
+  if (start) {
+    drawNode(start, "tomato");
+  }
+  if (goal) {
+    drawNode(goal, "tomato");
+  }
+
+  // Draw current node
+  if (current) {
+    {
+      drawNode(current, "lightblue");
+    }
+  }
 }
 
-function drawNode(node) {
-  fill(node.color);
+function drawNode(node, fillColor = "white") {
+  fill(fillColor);
   circle(node.x, node.y, 2 * NODE_RADIUS);
   fill("black");
   textSize(1.4 * NODE_RADIUS);
   textStyle(BOLD);
   textAlign(CENTER, CENTER);
   text(`${node.name}`, node.x, node.y);
+
+  fill("blue");
+  textSize(1.0 * NODE_RADIUS);
+  textStyle(NORMAL);
+  textAlign(LEFT, TOP);
+  text(
+    `g: ${node.gScore.toFixed(1)}\nf: ${node.fScore.toFixed(1)}`,
+    node.x + 0.8 * NODE_RADIUS,
+    node.y + 0.8 * NODE_RADIUS
+  );
 
   if (DISPLAY_COORDINATES) {
     fill("red");
@@ -151,8 +179,8 @@ async function bfs(startName, goalName) {
 
 // My implementation of A* Search
 async function aStarSearch(startName, goalName) {
-  const start = graph.nodes.get(startName);
-  const goal = graph.nodes.get(goalName);
+  start = graph.nodes.get(startName);
+  goal = graph.nodes.get(goalName);
 
   // Heuristic function: Estimates the cost to reach goal from node
   function heuristic(node) {
@@ -169,10 +197,7 @@ async function aStarSearch(startName, goalName) {
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    const current = priorityQueue.dequeue();
-    current.color = "lightblue";
-
-    await nextStepButtonClick();
+    current = priorityQueue.dequeue();
 
     if (current === goal) {
       console.log("Goal is found!");
@@ -180,6 +205,8 @@ async function aStarSearch(startName, goalName) {
       console.log(path);
       return path;
     }
+
+    await nextStepButtonClick();
 
     // loop over (out) neighbors
     for (const neighbor of current.links) {
