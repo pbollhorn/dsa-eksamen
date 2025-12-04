@@ -31,7 +31,7 @@
           document.getElementById("pathDisplay").textContent = "No path found";
         } else {
           const length = path.slice(-1)[0].fScore.toFixed(1);
-          document.getElementById("pathDisplay").textContent = "Path found: " + path.map(node=>node.name).join(" ") + "   Length: "+length;
+          document.getElementById("pathDisplay").textContent = "Path found: " + path.map(node=>node.name).join(" ") + " Length: "+length;
         }
 
         nextStepButton.disabled = true;
