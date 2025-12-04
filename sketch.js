@@ -7,6 +7,7 @@ let current;
 let start;
 let goal;
 let cameFrom;
+let priorityQueue;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -170,7 +171,7 @@ async function aStarSearch(startName, goalName) {
     return distance(node, goal);
   }
 
-  const priorityQueue = new PriorityQueue();
+  priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
   cameFrom = new Map();
@@ -191,9 +192,6 @@ async function aStarSearch(startName, goalName) {
       console.log(path);
       return path;
     }
-
-    // updateDisplay(current, priorityQueue);
-    // await nextStepButtonClick();
 
     // loop over (out) neighbors
     for (const neighbor of current.links) {
@@ -227,38 +225,3 @@ function reconstruct_path(current) {
 function distance(node1, node2) {
   return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
 }
-
-// // My implementation of BFS
-// async function bfs(startName, goalName) {
-//   const startNode = graph.nodes.get(startName);
-//   const goalNode = graph.nodes.get(goalName);
-
-//   const visited = new Set();
-//   const queue = []; // JavaScript array used as a queue
-//   queue.push(startNode);
-
-//   updateDisplay({ name: "" }, queue, visited);
-//   await nextStepButtonClick();
-
-//   while (queue.length > 0) {
-//     const currentNode = queue.shift();
-
-//     updateDisplay(currentNode, queue, visited);
-
-//     if (visited.has(currentNode)) {
-//       continue;
-//     }
-
-//     if (currentNode === goalNode) {
-//       document.getElementById("nextStepButton").disabled = true;
-//       alert("Goal Node Found!");
-//       return;
-//     } else {
-//       queue.push(...currentNode.links);
-//       visited.add(currentNode);
-//       currentNode.visited = true;
-//     }
-
-//     await nextStepButtonClick();
-//   }
-// }
