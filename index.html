@@ -25,8 +25,9 @@
         goalNodeSelect.disabled = true;
         startSearchButton.disabled = true;
         nextStepButton.disabled = false;
-        await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
+        const result = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         nextStepButton.disabled = true;
+        console.log(result);
       }
 
 

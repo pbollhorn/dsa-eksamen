@@ -79,7 +79,7 @@ function draw() {
     document.getElementById("currentNodeDisplay").textContent = current.name;
 
     // Draw path from start to current node
-    const path = reconstruct_path(current);
+    const path = reconstruct_path(cameFrom, current);
     for (let i = 0; i <= path.length - 2; i++) {
       const thisnode = path[i];
       const nextnode = path[i + 1];
@@ -178,14 +178,11 @@ async function aStarSearch(startName, goalName) {
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-
     current = priorityQueue.dequeue();
 
     if (current === goal) {
-      console.log("Goal is found!");
-      const path = reconstruct_path(current);
-      console.log(path);
-      return path;
+      const path = reconstruct_path(cameFrom, current);
+      return {found: true, path};
     }
 
     // loop over (out) neighbors
@@ -205,9 +202,10 @@ async function aStarSearch(startName, goalName) {
     }
     await nextStepButtonClick();
   }
+  return { found: false, path: undefined };
 }
 
-function reconstruct_path(current) {
+function reconstruct_path(cameFrom, current) {
   const total_path = [current];
 
   while (cameFrom.has(current)) {
