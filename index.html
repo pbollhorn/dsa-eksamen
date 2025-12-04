@@ -25,9 +25,15 @@
         goalNodeSelect.disabled = true;
         startSearchButton.disabled = true;
         nextStepButton.disabled = false;
-        const result = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
+
+        const path = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
+        if(!path) {
+          document.getElementById("pathDisplay").textContent = "No path found";
+        } else {
+          document.getElementById("pathDisplay").textContent = "Path found: " + path.map(node=>node.name).join(" ");
+        }
+
         nextStepButton.disabled = true;
-        document.getElementById("pathDisplay").textContent = "Found: "+result.found;
       }
 
 

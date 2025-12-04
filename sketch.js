@@ -181,7 +181,7 @@ async function aStarSearch(startName, goalName) {
 
     if (current === goal) {
       const path = reconstruct_path(cameFrom, current);
-      return {found: true, path};
+      return path;
     }
 
     // loop over (out) neighbors
@@ -201,7 +201,8 @@ async function aStarSearch(startName, goalName) {
     }
     await nextStepButtonClick();
   }
-  return { found: false, path: undefined };
+  // Open set is empty but goal was never reached
+  return undefined;
 }
 
 function reconstruct_path(cameFrom, current) {
