@@ -27,7 +27,6 @@
         nextStepButton.disabled = false;
         const result = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         nextStepButton.disabled = true;
-        console.log(result);
         document.getElementById("pathDisplay").textContent = "Found: "+result.found;
       }
 

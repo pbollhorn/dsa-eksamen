@@ -167,7 +167,6 @@ async function aStarSearch(startName, goalName) {
 
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
-  console.log(priorityQueue);
 
   cameFrom = new Map();
 

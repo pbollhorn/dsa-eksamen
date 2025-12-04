@@ -18,7 +18,7 @@ export default function buildGraph() {
 
   // Lav links imellem grafens nodes
   graph.addLink("A", "B");
-  graph.addLink("B", "C");
+  // graph.addLink("B", "C");
   graph.addLink("C", "J");
   graph.addLink("J", "D");
   graph.addLink("D", "E");
