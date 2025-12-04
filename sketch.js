@@ -38,7 +38,7 @@ async function setup() {
 
 // draw() is run repeatedly approx. 60 times per second
 function draw() {
-  // return immediately in case setup() has not finished yet
+  // return immediately if setup() has not finished yet
   if (!graph) return;
 
   if (DISPLAY_BACKGROUND) {
@@ -73,18 +73,10 @@ function draw() {
       priorityQueue.toString();
   }
 
-  // // Draw neighbor
-  // if (neighbor) {
-  //   drawNode(neighbor, "lightgray");
-  // }
-
   // Draw current node and path
   if (current) {
     drawNode(current, "green");
     document.getElementById("currentNodeDisplay").textContent = current.name;
-    // document.getElementById("neighborsDisplay").textContent = [...current.links]
-    //   .map((node) => node.name)
-    //   .join(", ");
 
     // Draw path from start to current node
     const path = reconstruct_path(current);
@@ -117,7 +109,7 @@ function drawNode(node, fillColor = "white") {
   textStyle(NORMAL);
   textAlign(LEFT, TOP);
   text(
-    `g: ${node.gScore.toFixed(1)}\nf: ${node.fScore.toFixed(1)}`,
+    `f: ${node.fScore.toFixed(1)}\ng: ${node.gScore.toFixed(1)}`,
     node.x + 0.8 * NODE_RADIUS,
     node.y + 0.8 * NODE_RADIUS
   );
@@ -182,15 +174,12 @@ async function aStarSearch(startName, goalName) {
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
-  // await nextStepButtonClick();
+  await nextStepButtonClick();
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    await nextStepButtonClick();
 
     current = priorityQueue.dequeue();
-
-    // await nextStepButtonClick();
 
     if (current === goal) {
       console.log("Goal is found!");
@@ -214,7 +203,7 @@ async function aStarSearch(startName, goalName) {
         }
       }
     }
-    // await nextStepButtonClick();
+    await nextStepButtonClick();
   }
 }
 
