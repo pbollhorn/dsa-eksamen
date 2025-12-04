@@ -6,6 +6,7 @@ let PriorityQueue;
 let current;
 let start;
 let goal;
+let cameFrom;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -190,7 +191,7 @@ async function aStarSearch(startName, goalName) {
   const priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
-  const cameFrom = new Map();
+  cameFrom = new Map();
 
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
