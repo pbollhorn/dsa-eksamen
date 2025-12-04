@@ -86,10 +86,10 @@ function draw() {
       drawLink(thisnode, nextnode, "red");
     }
 
-    // Draw neighbors
-    for (const neighbor of current.links) {
-      drawNode(neighbor, "lightgreen");
-    }
+    // // Draw neighbors
+    // for (const neighbor of current.links) {
+    //   drawNode(neighbor, "lightgreen");
+    // }
   }
 }
 
@@ -165,6 +165,8 @@ async function aStarSearch(startName, goalName) {
     return distance(node, goal);
   }
 
+  await nextStepButtonClick();
+
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
   console.log(priorityQueue);
@@ -179,6 +181,8 @@ async function aStarSearch(startName, goalName) {
     await nextStepButtonClick();
 
     current = priorityQueue.dequeue();
+
+    await nextStepButtonClick();
 
     if (current === goal) {
       console.log("Goal is found!");
