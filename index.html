@@ -14,6 +14,7 @@
 
     <script>
       let DISPLAY_COORDINATES = false;
+      let DISPLAY_WEIGHTS = false;
       let DISPLAY_BACKGROUND = true;
 
       async function startSearchButtonClick() {
@@ -55,6 +56,9 @@
     <button onclick="window.location.reload();">Reset everything</button>
     <button onclick="DISPLAY_COORDINATES = !DISPLAY_COORDINATES">
       Toggle Coordinates
+    </button>
+    <button onclick="DISPLAY_WEIGHTS = !DISPLAY_WEIGHTS">
+      Toggle Weights
     </button>
     <button onclick="DISPLAY_BACKGROUND = !DISPLAY_BACKGROUND">
       Toggle Background

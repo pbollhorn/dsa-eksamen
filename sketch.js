@@ -47,7 +47,7 @@ function draw() {
     background("white");
   }
 
-  // Draw the link
+  // Draw links
   for (const node of graph.nodes.values()) {
     for (const otherNode of node.links) {
       drawLink(node, otherNode);
@@ -136,10 +136,12 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
 
   stroke(fillColor);
   fill(fillColor);
-  strokeWeight(3);
+  
 
   // Draw the line
+  strokeWeight(3);
   line(startX, startY, endX, endY);
+  strokeWeight(1);
 
   // Draw the arrowhead at the end
   const arrowSize = 10; // size of the arrowhead
@@ -151,8 +153,6 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
     endX - arrowSize * cos(a + PI / 6),
     endY - arrowSize * sin(a + PI / 6)
   );
-
-  strokeWeight(1);
 }
 
 // My implementation of A* Search
