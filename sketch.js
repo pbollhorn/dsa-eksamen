@@ -152,7 +152,7 @@ function updateDisplay(current, queue) {
     currentNodeDisplay.textContent = current.name;
   }
 
-  const queueAsString = queue.map((node) => node.name).join(",");
+  const queueAsString = queue.array.map((node) => node.name).join(",");
   queueDisplay.textContent = queueAsString;
 }
 
@@ -188,6 +188,7 @@ async function aStarSearch(startName, goalName) {
       return path;
     }
 
+    updateDisplay(current, priorityQueue);
     await nextStepButtonClick();
 
     // loop over (out) neighbors
