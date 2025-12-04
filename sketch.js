@@ -67,11 +67,16 @@ function draw() {
     drawNode(goal, "red");
   }
 
-  // Draw current node
+  // Draw queue (which is actually just HTML)
+  if (priorityQueue) {
+    document.getElementById("queueDisplay").textContent =
+      priorityQueue.toString();
+  }
+
+  // Draw current node and path and neighbors
   if (current) {
-    {
-      drawNode(current, "cyan");
-    }
+    drawNode(current, "cyan");
+    document.getElementById("currentNodeDisplay").textContent = current.name;
 
     // Draw path from start to current node
     const path = reconstruct_path(current);
@@ -85,8 +90,6 @@ function draw() {
     for (const neighbor of current.links) {
       drawNode(neighbor, "lightgreen");
     }
-
-    updateDisplay(current, priorityQueue);
   }
 }
 
@@ -152,17 +155,6 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
   strokeWeight(1);
 }
 
-function updateDisplay(current, queue) {
-  const currentNodeDisplay = document.getElementById("currentNodeDisplay");
-  const queueDisplay = document.getElementById("queueDisplay");
-
-  if (current) {
-    currentNodeDisplay.textContent = current.name;
-  }
-
-  queueDisplay.textContent = queue.toString();
-}
-
 // My implementation of A* Search
 async function aStarSearch(startName, goalName) {
   start = graph.nodes.get(startName);
@@ -175,6 +167,7 @@ async function aStarSearch(startName, goalName) {
 
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
+  console.log(priorityQueue);
 
   cameFrom = new Map();
 
