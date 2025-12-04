@@ -30,7 +30,8 @@
         if(!path) {
           document.getElementById("pathDisplay").textContent = "No path found";
         } else {
-          document.getElementById("pathDisplay").textContent = "Path found: " + path.map(node=>node.name).join(" ");
+          const length = path.slice(-1)[0].fScore.toFixed(1);
+          document.getElementById("pathDisplay").textContent = "Path found: " + path.map(node=>node.name).join(" ") + "   Length: "+length;
         }
 
         nextStepButton.disabled = true;
