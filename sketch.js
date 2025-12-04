@@ -71,6 +71,14 @@ function draw() {
     {
       drawNode(current, "lightblue");
     }
+
+    // Draw path from start to current node
+    const path = reconstruct_path(current);
+    for (let i = 0; i <= path.length - 2; i++) {
+      const thisnode = path[i];
+      const nextnode = path[i + 1];
+      drawLink(thisnode, nextnode, "red");
+    }
   }
 }
 
@@ -83,6 +91,7 @@ function drawNode(node, fillColor = "white") {
   textAlign(CENTER, CENTER);
   text(`${node.name}`, node.x, node.y);
 
+  noStroke();
   fill("blue");
   textSize(1.0 * NODE_RADIUS);
   textStyle(NORMAL);
@@ -101,7 +110,7 @@ function drawNode(node, fillColor = "white") {
   }
 }
 
-function drawLink(nodeA, nodeB) {
+function drawLink(nodeA, nodeB, fillColor = "black") {
   // Angle from A to B
   const a = atan2(nodeB.y - nodeA.y, nodeB.x - nodeA.x);
 
@@ -113,11 +122,14 @@ function drawLink(nodeA, nodeB) {
   const endX = nodeB.x - NODE_RADIUS * cos(a);
   const endY = nodeB.y - NODE_RADIUS * sin(a);
 
+  stroke(fillColor);
+  fill(fillColor);
+  strokeWeight(3);
+
   // Draw the line
   line(startX, startY, endX, endY);
 
   // Draw the arrowhead at the end
-  fill("black");
   const arrowSize = 10; // size of the arrowhead
   triangle(
     endX,
@@ -127,6 +139,8 @@ function drawLink(nodeA, nodeB) {
     endX - arrowSize * cos(a + PI / 6),
     endY - arrowSize * sin(a + PI / 6)
   );
+
+  strokeWeight(1);
 }
 
 function updateDisplay(currentNode, queue, visited) {
@@ -202,7 +216,7 @@ async function aStarSearch(startName, goalName) {
 
     if (current === goal) {
       console.log("Goal is found!");
-      const path = reconstruct_path(cameFrom, current);
+      const path = reconstruct_path(current);
       console.log(path);
       return path;
     }
@@ -227,7 +241,7 @@ async function aStarSearch(startName, goalName) {
   }
 }
 
-function reconstruct_path(cameFrom, current) {
+function reconstruct_path(current) {
   const total_path = [current];
 
   while (cameFrom.has(current)) {
