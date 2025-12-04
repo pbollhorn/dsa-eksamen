@@ -83,6 +83,9 @@ function draw() {
   if (current) {
     drawNode(current, "cyan");
     document.getElementById("currentNodeDisplay").textContent = current.name;
+    document.getElementById("neighborsDisplay").textContent = [
+      ...current.links,
+    ].map((node) => node.name).join(", ");
 
     // Draw path from start to current node
     const path = reconstruct_path(current);
@@ -180,9 +183,7 @@ async function aStarSearch(startName, goalName) {
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
-
   await nextStepButtonClick();
-
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
