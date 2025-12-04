@@ -136,7 +136,6 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
 
   stroke(fillColor);
   fill(fillColor);
-  
 
   // Draw the line
   strokeWeight(3);
@@ -153,6 +152,13 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
     endX - arrowSize * cos(a + PI / 6),
     endY - arrowSize * sin(a + PI / 6)
   );
+
+  if (DISPLAY_WEIGHTS) {
+    const weight = distance(nodeA, nodeB).toFixed(1);
+    const x = (nodeA.x + nodeB.x) / 2;
+    const y = (nodeA.y + nodeB.y) / 2;
+    text(weight, x, y);
+  }
 }
 
 // My implementation of A* Search
