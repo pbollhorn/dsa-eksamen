@@ -28,6 +28,7 @@
         const result = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         nextStepButton.disabled = true;
         console.log(result);
+        document.getElementById("pathDisplay").textContent = "Found: "+result.found;
       }
 
 
@@ -71,6 +72,8 @@
     Current node: <span id="currentNodeDisplay"></span>
     </br>
     Queue:<span id="queueDisplay"></span>  
+    </br>
+    Path:<span id="pathDisplay"></span>
     </br>
     <script src="sketch.js"></script>
   </body>
