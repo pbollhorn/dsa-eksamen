@@ -35,4 +35,12 @@ export default class PriorityQueue {
       yield this.array[i];
     }
   }
+
+  toString() {
+    let string = "";
+    for (let i = this.array.length - 1; i >= 0; i--) {
+      string += ` ${this.array[i].name} `;
+    }
+    return string;
+  }
 }

@@ -79,6 +79,11 @@ function draw() {
       const nextnode = path[i + 1];
       drawLink(thisnode, nextnode, "red");
     }
+
+    // Draw neighbors
+    for (const neighbor of current.links) {
+      drawNode(neighbor, "lightgreen");
+    }
   }
 }
 
@@ -152,8 +157,7 @@ function updateDisplay(current, queue) {
     currentNodeDisplay.textContent = current.name;
   }
 
-  const queueAsString = queue.array.map((node) => node.name).join(",");
-  queueDisplay.textContent = queueAsString;
+  queueDisplay.textContent = queue.toString();
 }
 
 // My implementation of A* Search
