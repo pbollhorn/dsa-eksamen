@@ -8,7 +8,6 @@ let start;
 let goal;
 let cameFrom;
 let priorityQueue;
-let neighbor;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -62,10 +61,10 @@ function draw() {
 
   // Draw start node and goal node
   if (start) {
-    drawNode(start, "red");
+    drawNode(start, "#EE292A");
   }
   if (goal) {
-    drawNode(goal, "red");
+    drawNode(goal, "#EE292A");
   }
 
   // Draw queue (which is actually just HTML)
@@ -74,31 +73,31 @@ function draw() {
       priorityQueue.toString();
   }
 
-  // Draw neighbor
-  if (neighbor) {
-    drawNode(neighbor, "lightgreen");
-  }
+  // // Draw neighbor
+  // if (neighbor) {
+  //   drawNode(neighbor, "lightgray");
+  // }
 
   // Draw current node and path
   if (current) {
-    drawNode(current, "cyan");
+    drawNode(current, "green");
     document.getElementById("currentNodeDisplay").textContent = current.name;
-    document.getElementById("neighborsDisplay").textContent = [
-      ...current.links,
-    ].map((node) => node.name).join(", ");
+    // document.getElementById("neighborsDisplay").textContent = [...current.links]
+    //   .map((node) => node.name)
+    //   .join(", ");
 
     // Draw path from start to current node
     const path = reconstruct_path(current);
     for (let i = 0; i <= path.length - 2; i++) {
       const thisnode = path[i];
       const nextnode = path[i + 1];
-      drawLink(thisnode, nextnode, "red");
+      drawLink(thisnode, nextnode, "#EE292A");
     }
 
-    // // Draw neighbors
-    // for (const neighbor of current.links) {
-    //   drawNode(neighbor, "lightgreen");
-    // }
+    // Draw neighbors
+    for (const neighbor of current.links) {
+      drawNode(neighbor, "lightgreen");
+    }
   }
 }
 
@@ -183,15 +182,15 @@ async function aStarSearch(startName, goalName) {
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
-  await nextStepButtonClick();
+  // await nextStepButtonClick();
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    // await nextStepButtonClick();
+    await nextStepButtonClick();
 
     current = priorityQueue.dequeue();
 
-    await nextStepButtonClick();
+    // await nextStepButtonClick();
 
     if (current === goal) {
       console.log("Goal is found!");
@@ -201,7 +200,7 @@ async function aStarSearch(startName, goalName) {
     }
 
     // loop over (out) neighbors
-    for (neighbor of current.links) {
+    for (const neighbor of current.links) {
       // tentative_gScore is the distance from start to the neighbor through current
       tentative_gScore = current.gScore + distance(current, neighbor);
 
@@ -214,9 +213,8 @@ async function aStarSearch(startName, goalName) {
           priorityQueue.enqueue(neighbor);
         }
       }
-      await nextStepButtonClick();
     }
-    neighbor = undefined; // Due to visualization
+    // await nextStepButtonClick();
   }
 }
 
