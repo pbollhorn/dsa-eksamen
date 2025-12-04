@@ -144,18 +144,14 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
   strokeWeight(1);
 }
 
-function updateDisplay(currentNode, queue, visited) {
+function updateDisplay(currentNode, queue) {
   const currentNodeDisplay = document.getElementById("currentNodeDisplay");
   const queueDisplay = document.getElementById("queueDisplay");
-  const visitedDisplay = document.getElementById("visitedDisplay");
 
   currentNodeDisplay.textContent = currentNode.name;
 
   const queueAsString = queue.map((node) => node.name).join(",");
   queueDisplay.textContent = queueAsString;
-
-  const visitedAsString = [...visited].map((node) => node.name).join(",");
-  visitedDisplay.textContent = visitedAsString;
 }
 
 // My implementation of A* Search
@@ -224,37 +220,37 @@ function distance(node1, node2) {
   return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
 }
 
-// My implementation of BFS
-async function bfs(startName, goalName) {
-  const startNode = graph.nodes.get(startName);
-  const goalNode = graph.nodes.get(goalName);
+// // My implementation of BFS
+// async function bfs(startName, goalName) {
+//   const startNode = graph.nodes.get(startName);
+//   const goalNode = graph.nodes.get(goalName);
 
-  const visited = new Set();
-  const queue = []; // JavaScript array used as a queue
-  queue.push(startNode);
+//   const visited = new Set();
+//   const queue = []; // JavaScript array used as a queue
+//   queue.push(startNode);
 
-  updateDisplay({ name: "" }, queue, visited);
-  await nextStepButtonClick();
+//   updateDisplay({ name: "" }, queue, visited);
+//   await nextStepButtonClick();
 
-  while (queue.length > 0) {
-    const currentNode = queue.shift();
+//   while (queue.length > 0) {
+//     const currentNode = queue.shift();
 
-    updateDisplay(currentNode, queue, visited);
+//     updateDisplay(currentNode, queue, visited);
 
-    if (visited.has(currentNode)) {
-      continue;
-    }
+//     if (visited.has(currentNode)) {
+//       continue;
+//     }
 
-    if (currentNode === goalNode) {
-      document.getElementById("nextStepButton").disabled = true;
-      alert("Goal Node Found!");
-      return;
-    } else {
-      queue.push(...currentNode.links);
-      visited.add(currentNode);
-      currentNode.visited = true;
-    }
+//     if (currentNode === goalNode) {
+//       document.getElementById("nextStepButton").disabled = true;
+//       alert("Goal Node Found!");
+//       return;
+//     } else {
+//       queue.push(...currentNode.links);
+//       visited.add(currentNode);
+//       currentNode.visited = true;
+//     }
 
-    await nextStepButtonClick();
-  }
-}
+//     await nextStepButtonClick();
+//   }
+// }
