@@ -60,16 +60,16 @@ function draw() {
 
   // Draw start node and goal node
   if (start) {
-    drawNode(start, "tomato");
+    drawNode(start, "red");
   }
   if (goal) {
-    drawNode(goal, "tomato");
+    drawNode(goal, "red");
   }
 
   // Draw current node
   if (current) {
     {
-      drawNode(current, "lightblue");
+      drawNode(current, "cyan");
     }
 
     // Draw path from start to current node
@@ -158,41 +158,6 @@ function updateDisplay(currentNode, queue, visited) {
   visitedDisplay.textContent = visitedAsString;
 }
 
-// My implementation of BFS
-async function bfs(startName, goalName) {
-  const startNode = graph.nodes.get(startName);
-  const goalNode = graph.nodes.get(goalName);
-
-  const visited = new Set();
-  const queue = []; // JavaScript array used as a queue
-  queue.push(startNode);
-
-  updateDisplay({ name: "" }, queue, visited);
-  await nextStepButtonClick();
-
-  while (queue.length > 0) {
-    const currentNode = queue.shift();
-
-    updateDisplay(currentNode, queue, visited);
-
-    if (visited.has(currentNode)) {
-      continue;
-    }
-
-    if (currentNode === goalNode) {
-      document.getElementById("nextStepButton").disabled = true;
-      alert("Goal Node Found!");
-      return;
-    } else {
-      queue.push(...currentNode.links);
-      visited.add(currentNode);
-      currentNode.visited = true;
-    }
-
-    await nextStepButtonClick();
-  }
-}
-
 // My implementation of A* Search
 async function aStarSearch(startName, goalName) {
   start = graph.nodes.get(startName);
@@ -210,6 +175,8 @@ async function aStarSearch(startName, goalName) {
 
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
+
+  await nextStepButtonClick();
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
@@ -255,4 +222,39 @@ function reconstruct_path(current) {
 
 function distance(node1, node2) {
   return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
+}
+
+// My implementation of BFS
+async function bfs(startName, goalName) {
+  const startNode = graph.nodes.get(startName);
+  const goalNode = graph.nodes.get(goalName);
+
+  const visited = new Set();
+  const queue = []; // JavaScript array used as a queue
+  queue.push(startNode);
+
+  updateDisplay({ name: "" }, queue, visited);
+  await nextStepButtonClick();
+
+  while (queue.length > 0) {
+    const currentNode = queue.shift();
+
+    updateDisplay(currentNode, queue, visited);
+
+    if (visited.has(currentNode)) {
+      continue;
+    }
+
+    if (currentNode === goalNode) {
+      document.getElementById("nextStepButton").disabled = true;
+      alert("Goal Node Found!");
+      return;
+    } else {
+      queue.push(...currentNode.links);
+      visited.add(currentNode);
+      currentNode.visited = true;
+    }
+
+    await nextStepButtonClick();
+  }
 }
