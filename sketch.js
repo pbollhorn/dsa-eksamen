@@ -83,6 +83,7 @@ function draw() {
 }
 
 function drawNode(node, fillColor = "white") {
+  stroke("black");
   fill(fillColor);
   circle(node.x, node.y, 2 * NODE_RADIUS);
   fill("black");
