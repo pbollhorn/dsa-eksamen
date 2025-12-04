@@ -16,7 +16,7 @@
       let DISPLAY_COORDINATES = false;
       let DISPLAY_BACKGROUND = true;
 
-      function startSearchButtonClick() {
+      async function startSearchButtonClick() {
         const startNodeSelect = document.getElementById("startNodeSelect");
         const goalNodeSelect = document.getElementById("goalNodeSelect");
         const startSearchButton = document.getElementById("startSearchButton");
@@ -24,8 +24,9 @@
         startNodeSelect.disabled = true;
         goalNodeSelect.disabled = true;
         startSearchButton.disabled = true;
-        aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         nextStepButton.disabled = false;
+        await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
+        nextStepButton.disabled = true;
       }
 
 
