@@ -28,8 +28,8 @@ export default function buildGraph() {
   graph.addLink("E", "F");
   graph.addLink("F", "G");
   graph.addLink("G", "H");
-  graph.addLink("H", "A");
   graph.addLink("H", "I");
+  graph.addLink("H", "A");
   graph.addLink("I", "B");
   graph.addLink("I", "J");
 

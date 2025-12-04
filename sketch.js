@@ -8,6 +8,7 @@ let start;
 let goal;
 let cameFrom;
 let priorityQueue;
+let neighbor;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -73,7 +74,12 @@ function draw() {
       priorityQueue.toString();
   }
 
-  // Draw current node and path and neighbors
+  // Draw neighbor
+  if (neighbor) {
+    drawNode(neighbor, "lightgreen");
+  }
+
+  // Draw current node and path
   if (current) {
     drawNode(current, "cyan");
     document.getElementById("currentNodeDisplay").textContent = current.name;
@@ -165,8 +171,6 @@ async function aStarSearch(startName, goalName) {
     return distance(node, goal);
   }
 
-  await nextStepButtonClick();
-
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
   console.log(priorityQueue);
@@ -176,9 +180,13 @@ async function aStarSearch(startName, goalName) {
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
+
+  await nextStepButtonClick();
+
+
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    await nextStepButtonClick();
+    // await nextStepButtonClick();
 
     current = priorityQueue.dequeue();
 
@@ -192,7 +200,7 @@ async function aStarSearch(startName, goalName) {
     }
 
     // loop over (out) neighbors
-    for (const neighbor of current.links) {
+    for (neighbor of current.links) {
       // tentative_gScore is the distance from start to the neighbor through current
       tentative_gScore = current.gScore + distance(current, neighbor);
 
@@ -205,7 +213,9 @@ async function aStarSearch(startName, goalName) {
           priorityQueue.enqueue(neighbor);
         }
       }
+      await nextStepButtonClick();
     }
+    neighbor = undefined; // Due to visualization
   }
 }
 
