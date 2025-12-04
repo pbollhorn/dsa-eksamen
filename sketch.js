@@ -85,6 +85,8 @@ function draw() {
     for (const neighbor of current.links) {
       drawNode(neighbor, "lightgreen");
     }
+
+    updateDisplay(current, priorityQueue);
   }
 }
 
@@ -181,7 +183,6 @@ async function aStarSearch(startName, goalName) {
 
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
-    updateDisplay(current, priorityQueue);
     await nextStepButtonClick();
 
     current = priorityQueue.dequeue();
