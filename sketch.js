@@ -174,11 +174,11 @@ async function aStarSearch(startName, goalName) {
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
-  updateDisplay(current, priorityQueue);
-  await nextStepButtonClick();
-
   // while openSet is not empty
   while (priorityQueue.size() > 0) {
+    updateDisplay(current, priorityQueue);
+    await nextStepButtonClick();
+
     current = priorityQueue.dequeue();
 
     if (current === goal) {
@@ -188,8 +188,8 @@ async function aStarSearch(startName, goalName) {
       return path;
     }
 
-    updateDisplay(current, priorityQueue);
-    await nextStepButtonClick();
+    // updateDisplay(current, priorityQueue);
+    // await nextStepButtonClick();
 
     // loop over (out) neighbors
     for (const neighbor of current.links) {
