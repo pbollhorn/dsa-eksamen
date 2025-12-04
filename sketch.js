@@ -144,11 +144,13 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
   strokeWeight(1);
 }
 
-function updateDisplay(currentNode, queue) {
+function updateDisplay(current, queue) {
   const currentNodeDisplay = document.getElementById("currentNodeDisplay");
   const queueDisplay = document.getElementById("queueDisplay");
 
-  currentNodeDisplay.textContent = currentNode.name;
+  if (current) {
+    currentNodeDisplay.textContent = current.name;
+  }
 
   const queueAsString = queue.map((node) => node.name).join(",");
   queueDisplay.textContent = queueAsString;
@@ -172,6 +174,7 @@ async function aStarSearch(startName, goalName) {
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
+  updateDisplay(current, priorityQueue);
   await nextStepButtonClick();
 
   // while openSet is not empty

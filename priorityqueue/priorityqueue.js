@@ -26,4 +26,11 @@ export default class PriorityQueue {
   print() {
     console.log(this.#array);
   }
+
+  // Iterator that yields each element in the queue
+  *[Symbol.iterator]() {
+    for (element of array) {
+      yield element;
+    }
+  }
 }
