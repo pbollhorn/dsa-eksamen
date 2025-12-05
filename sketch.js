@@ -209,7 +209,7 @@ async function aStarSearch(startName, goalName) {
     await nextStepButtonClick();
   }
   // Open set is empty but goal was never reached
-  return undefined;
+  return null;
 }
 
 function reconstruct_path(current) {
