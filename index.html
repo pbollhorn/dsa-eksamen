@@ -29,10 +29,11 @@
 
         const path = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         if(!path) {
-          document.getElementById("pathDisplay").textContent = "No path found";
+          document.getElementById("pathDisplay").textContent = "Search finished: No path found";
         } else {
           const length = path.slice(-1)[0].fScore.toFixed(1);
-          document.getElementById("pathDisplay").textContent = "Path found: " + path.map(node=>node.name).join(" ") + " Length: "+length;
+          const pathAsString = path.map(node=>node.name).join(" ");
+          document.getElementById("pathDisplay").textContent = `Search finished: Path found with length ${length}: ${pathAsString}`;
         }
 
         nextStepButton.disabled = true;
