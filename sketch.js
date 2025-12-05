@@ -6,7 +6,6 @@ let PriorityQueue;
 let current;
 let start;
 let goal;
-// let cameFrom;
 let priorityQueue;
 
 async function loadModules() {
@@ -109,7 +108,9 @@ function drawNode(node, fillColor = "white") {
   textStyle(NORMAL);
   textAlign(LEFT, TOP);
   text(
-    `f: ${node.fScore.toFixed(1)}\ng: ${node.gScore.toFixed(1)}\ncameFrom: ${node.cameFrom?.name}`,
+    `f: ${node.fScore.toFixed(1)}\ng: ${node.gScore.toFixed(1)}\nprev: ${
+      node.prev ? node.prev.name : null
+    }`,
     node.x + 0.8 * NODE_RADIUS,
     node.y + 0.8 * NODE_RADIUS
   );
@@ -174,9 +175,9 @@ async function aStarSearch(startName, goalName) {
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
-  start.cameFrom = undefined;
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
+  start.prev = null; // Strictly not necesarry to do this
 
   await nextStepButtonClick();
 
@@ -196,7 +197,7 @@ async function aStarSearch(startName, goalName) {
 
       if (tentative_gScore < neighbor.gScore) {
         // This path to neighbor is better than any previous one. Record it!
-        neighbor.cameFrom = current;
+        neighbor.prev = current;
         neighbor.gScore = tentative_gScore;
         neighbor.fScore = neighbor.gScore + heuristic(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
@@ -213,8 +214,8 @@ async function aStarSearch(startName, goalName) {
 function reconstruct_path(current) {
   const total_path = [current];
 
-  while (current.cameFrom) {
-    current = current.cameFrom;
+  while (current.prev) {
+    current = current.prev;
     total_path.unshift(current);
   }
 

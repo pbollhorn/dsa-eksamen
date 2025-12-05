@@ -21,7 +21,7 @@ export class Node {
     this.x = x;
     this.y = y;
     this.links = new Set();
-    this.cameFrom = undefined;
+    this.prev = null;
     this.fScore = Infinity;
     this.gScore = Infinity;
   }
