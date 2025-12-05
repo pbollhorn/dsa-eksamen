@@ -212,15 +212,15 @@ async function aStarSearch(startName, goalName) {
   return null;
 }
 
-function reconstruct_path(current) {
-  const total_path = [current];
+function reconstruct_path(node) {
+  const path = [node];
 
-  while (current.prev) {
-    current = current.prev;
-    total_path.unshift(current);
+  while (node.prev) {
+    node = node.prev;
+    path.unshift(node);
   }
 
-  return total_path;
+  return path;
 }
 
 function distance(node1, node2) {
