@@ -214,12 +214,10 @@ async function aStarSearch(startName, goalName) {
 
 function reconstruct_path(node) {
   const path = [node];
-
-  while (node.prev) {
+  while (node.prev !== null) {
     node = node.prev;
     path.unshift(node);
   }
-
   return path;
 }
 
