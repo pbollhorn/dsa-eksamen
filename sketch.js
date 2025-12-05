@@ -107,10 +107,11 @@ function drawNode(node, fillColor = "white") {
   textSize(1.0 * NODE_RADIUS);
   textStyle(NORMAL);
   textAlign(LEFT, TOP);
+  const f = node.fScore.toFixed(1);
+  const g = node.gScore.toFixed(1);
+  const prev = node.prev ? node.prev.name : null;
   text(
-    `f: ${node.fScore.toFixed(1)}\ng: ${node.gScore.toFixed(1)}\nprev: ${
-      node.prev ? node.prev.name : null
-    }`,
+    `f: ${f}\ng: ${g}\nprev: ${prev}`,
     node.x + 0.8 * NODE_RADIUS,
     node.y + 0.8 * NODE_RADIUS
   );
