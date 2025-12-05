@@ -20,10 +20,10 @@ export class Node {
     this.name = name;
     this.x = x;
     this.y = y;
-    this.color = "white";
+    this.links = new Set();
+    this.cameFrom = undefined;
     this.fScore = Infinity;
     this.gScore = Infinity;
-    this.links = new Set();
   }
 
   addLink(node) {

@@ -6,7 +6,7 @@ let PriorityQueue;
 let current;
 let start;
 let goal;
-let cameFrom;
+// let cameFrom;
 let priorityQueue;
 
 async function loadModules() {
@@ -79,7 +79,7 @@ function draw() {
     document.getElementById("currentNodeDisplay").textContent = current.name;
 
     // Draw path from start to current node
-    const path = reconstruct_path(cameFrom, current);
+    const path = reconstruct_path(current);
     for (let i = 0; i <= path.length - 2; i++) {
       const thisnode = path[i];
       const nextnode = path[i + 1];
@@ -109,7 +109,7 @@ function drawNode(node, fillColor = "white") {
   textStyle(NORMAL);
   textAlign(LEFT, TOP);
   text(
-    `f: ${node.fScore.toFixed(1)}\ng: ${node.gScore.toFixed(1)}`,
+    `f: ${node.fScore.toFixed(1)}\ng: ${node.gScore.toFixed(1)}\ncameFrom: ${node.cameFrom?.name}`,
     node.x + 0.8 * NODE_RADIUS,
     node.y + 0.8 * NODE_RADIUS
   );
@@ -174,8 +174,7 @@ async function aStarSearch(startName, goalName) {
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
-  cameFrom = new Map();
-
+  start.cameFrom = undefined;
   start.gScore = 0;
   start.fScore = start.gScore + heuristic(start);
 
@@ -186,7 +185,7 @@ async function aStarSearch(startName, goalName) {
     current = priorityQueue.dequeue();
 
     if (current === goal) {
-      const path = reconstruct_path(cameFrom, current);
+      const path = reconstruct_path(current);
       return path;
     }
 
@@ -197,7 +196,7 @@ async function aStarSearch(startName, goalName) {
 
       if (tentative_gScore < neighbor.gScore) {
         // This path to neighbor is better than any previous one. Record it!
-        cameFrom.set(neighbor, current);
+        neighbor.cameFrom = current;
         neighbor.gScore = tentative_gScore;
         neighbor.fScore = neighbor.gScore + heuristic(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
@@ -211,11 +210,11 @@ async function aStarSearch(startName, goalName) {
   return undefined;
 }
 
-function reconstruct_path(cameFrom, current) {
+function reconstruct_path(current) {
   const total_path = [current];
 
-  while (cameFrom.has(current)) {
-    current = cameFrom.get(current);
+  while (current.cameFrom) {
+    current = current.cameFrom;
     total_path.unshift(current);
   }
 
