@@ -196,7 +196,7 @@ async function aStarSearch(startName, goalName) {
 
     await nextStepButtonClick();
 
-    // loop over (out) neighbors
+    // loop over outgoing neighbors
     neighbors = current.links;
     for (const neighbor of neighbors) {
       // tentative_gScore is the distance from start to the neighbor through current
