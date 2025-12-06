@@ -1,4 +1,7 @@
 const NODE_RADIUS = 15;
+const CUSTOM_RED = "hsl(360, 100%, 60%)";
+const CUSTOM_GREEN = "hsl(120, 100%, 35%)";
+const CUSTOM_LIGHT_GREEN = "hsl(120, 100%, 75%)";
 
 let graph;
 let bgImg;
@@ -61,10 +64,10 @@ function draw() {
 
   // Draw start node and goal node
   if (start) {
-    drawNode(start, "#EE292A");
+    drawNode(start, CUSTOM_RED);
   }
   if (goal) {
-    drawNode(goal, "#EE292A");
+    drawNode(goal, CUSTOM_RED);
   }
 
   // Draw queue (which is actually just HTML)
@@ -75,7 +78,7 @@ function draw() {
 
   // Draw current node and path
   if (current) {
-    drawNode(current, "green");
+    drawNode(current, CUSTOM_GREEN);
     document.getElementById("currentNodeDisplay").textContent = current.name;
 
     // Draw path from start to current node
@@ -83,14 +86,14 @@ function draw() {
     for (let i = 0; i <= path.length - 2; i++) {
       const thisnode = path[i];
       const nextnode = path[i + 1];
-      drawLink(thisnode, nextnode, "#EE292A");
+      drawLink(thisnode, nextnode, CUSTOM_RED);
     }
   }
 
   // Draw neighbors
   if (neighbors) {
     for (const neighbor of neighbors) {
-      drawNode(neighbor, "lightgreen");
+      drawNode(neighbor, CUSTOM_LIGHT_GREEN);
     }
   }
 }
