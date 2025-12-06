@@ -9,6 +9,6 @@ canvas {
 
 #resultDisplay {
   color: red;
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: bold;
 }
