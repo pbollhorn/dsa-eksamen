@@ -40,25 +40,32 @@ export default function buildGraph() {
   graph.addNode("ε", 720, 390);
   graph.addNode("ζ", 720, 480);
 
-
-    // graph.addNode("α", 625, 390);
-
   // Lav links imellem grafens nodes
-  // graph.addLink("A", "B");
-  // graph.addLink("B", "C");
-  // graph.addLink("C", "J");
-  // graph.addLink("J", "D");
-  // graph.addLink("D", "E");
-  // graph.addLink("D", "K");
-  // graph.addLink("K", "G");
-  // graph.addLink("E", "D");
-  // graph.addLink("E", "F");
-  // graph.addLink("F", "G");
-  // graph.addLink("G", "H");
-  // graph.addLink("H", "I");
-  // graph.addLink("H", "A");
-  // graph.addLink("I", "B");
-  // graph.addLink("I", "J");
+  graph.addLink("a", "b");
+  graph.addLink("a", "f");
+  graph.addLink("b", "a");
+  graph.addLink("b", "c");
+  graph.addLink("b", "g");
+  graph.addLink("c", "b");
+  graph.addLink("c", "d");
+  graph.addLink("c", "h");
+  graph.addLink("d", "c");
+  graph.addLink("d", "e");
+  graph.addLink("d", "i");
+  graph.addLink("e", "d");
+  graph.addLink("e", "j");
+  graph.addLink("f", "a");
+  graph.addLink("f", "g");
+  graph.addLink("f", "k");
+  graph.addLink("g", "b");
+  graph.addLink("g", "f");
+  graph.addLink("g", "h");
+  graph.addLink("g", "l");
+  graph.addLink("h", "c");
+  graph.addLink("h", "g");
+  graph.addLink("h", "i");
+  graph.addLink("h", "m");
+  
 
   return graph;
 }
