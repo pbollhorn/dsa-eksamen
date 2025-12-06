@@ -29,11 +29,11 @@
 
         const path = await aStarSearch(startNodeSelect.value, goalNodeSelect.value);
         if(!path) {
-          document.getElementById("pathDisplay").textContent = "Search finished: No path found";
+          document.getElementById("resultDisplay").textContent = "Search finished: No path found";
         } else {
           const length = path.slice(-1)[0].fScore.toFixed(1);
           const pathAsString = path.map(node=>node.name).join(" ");
-          document.getElementById("pathDisplay").textContent = `Search finished: Path found with length ${length}: ${pathAsString}`;
+          document.getElementById("resultDisplay").textContent = `Search finished: Path found with length ${length}: ${pathAsString}`;
         }
 
         nextStepButton.disabled = true;
@@ -71,7 +71,7 @@
     <button onclick="startSearchButtonClick()" id="startSearchButton">Start search</button>
     <button onclick="nextStepButtonClick()" id="nextStepButton" disabled>Next step</button>
     </br>
-    <span id="pathDisplay"></span>
+    <span id="resultDisplay"></span>
     </br>
     </br>
     f(node) = g(node) + h(node)
