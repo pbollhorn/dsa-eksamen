@@ -25,7 +25,7 @@ async function setup() {
   bgImg = await loadImage("city.png");
   await loadModules();
   graph = buildGraph();
-  createCanvas(1400, 600);
+  createCanvas(1450, 730);
 
   for (const node of graph.nodes.values()) {
     let option = document.createElement("option");
