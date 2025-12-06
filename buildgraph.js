@@ -89,6 +89,7 @@ export default function buildGraph() {
   graph.addLink("o", "n");
   graph.addLink("o", "p");
   graph.addLink("o", "æ");
+  graph.addLink("p", "i");
   graph.addLink("p", "m");
   graph.addLink("p", "o");
   graph.addLink("p", "q");
@@ -101,6 +102,7 @@ export default function buildGraph() {
   graph.addLink("s", "n");
   graph.addLink("s", "t");
   graph.addLink("s", "w");
+  graph.addLink("t", "s");
   graph.addLink("t", "u");
   graph.addLink("t", "x");
   graph.addLink("u", "q");
