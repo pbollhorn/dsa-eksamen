@@ -104,7 +104,7 @@ function drawNode(node, fillColor = "white") {
   circle(node.x, node.y, 2 * NODE_RADIUS);
   fill("black");
   textSize(1.4 * NODE_RADIUS);
-  textStyle(BOLD);
+  // textStyle(BOLD);
   textAlign(CENTER, CENTER);
   text(`${node.name}`, node.x, node.y);
 

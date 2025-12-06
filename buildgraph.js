@@ -38,8 +38,8 @@ export default function buildGraph() {
   graph.addNode("f", 720, 43);
   graph.addNode("g", 720, 140);
   graph.addNode("h", 720, 235);
-  graph.addNode("h", 720, 390);
-  graph.addNode("i", 720, 480);
+  graph.addNode("i", 720, 390);
+  graph.addNode("j", 720, 480);
 
 
   // graph.addNode("G", 720, 43);
