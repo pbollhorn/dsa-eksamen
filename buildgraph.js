@@ -30,16 +30,18 @@ export default function buildGraph() {
   graph.addNode("x", 525, 235);
   graph.addNode("y", 525, 390);
   graph.addNode("z", 625, 43);
-  graph.addNode("æ", 625, 43);
-  graph.addNode("ø", 625, 140);
-  graph.addNode("å", 625, 235);
-  graph.addNode("α", 625, 390);
-  graph.addNode("β", 625, 480);
-  graph.addNode("γ", 720, 43);
-  graph.addNode("δ", 720, 140);
-  graph.addNode("ε", 720, 235);
-  graph.addNode("ζ", 720, 390);
-  graph.addNode("η", 720, 480);
+  graph.addNode("æ", 625, 140);
+  graph.addNode("ø", 625, 235);
+  graph.addNode("å", 625, 390);
+  graph.addNode("α", 625, 480);
+  graph.addNode("β", 720, 43);
+  graph.addNode("γ", 720, 140);
+  graph.addNode("δ", 720, 235);
+  graph.addNode("ε", 720, 390);
+  graph.addNode("ζ", 720, 480);
+
+
+    // graph.addNode("α", 625, 390);
 
   // Lav links imellem grafens nodes
   // graph.addLink("A", "B");
