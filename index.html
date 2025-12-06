@@ -33,7 +33,7 @@
         } else {
           const length = path.slice(-1)[0].fScore.toFixed(1);
           const pathAsString = path.map(node=>node.name).join(" ");
-          document.getElementById("resultDisplay").textContent = `Search finished: Path found with length ${length}: ${pathAsString}`;
+          document.getElementById("resultDisplay").textContent = `Search finished: Path found with length ${length} meters: ${pathAsString}`;
         }
 
         nextStepButton.disabled = true;
