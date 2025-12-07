@@ -1,29 +1,29 @@
 class PriorityQueue {
-  // array sorted by fscore from smallest to largest
+  #array;
 
   constructor() {
-    this.array = [];
+    this.#array = [];
   }
 
   enqueue(node) {
-    this.array.push(node);
-    this.array.sort((a, b) => b.fScore - a.fScore);
+    this.#array.push(node);
   }
 
   dequeue() {
-    return this.array.pop();
+    this.#array.sort((a, b) => a.fScore - b.fScore);
+    return this.#array.shift();
   }
 
   size() {
-    return this.array.length;
+    return this.#array.length;
   }
 
   includes(node) {
-    return this.array.includes(node);
+    return this.#array.includes(node);
   }
 
   print() {
-    console.log(this.array);
+    console.log(this.#array);
   }
 
   // Iterator that yields each element in the queue
@@ -31,15 +31,15 @@ class PriorityQueue {
     // for (element of this.#array) {
     //   yield element;
     // }
-    for (let i = 0; i < this.array.length; i++) {
-      yield this.array[i];
+    for (let i = 0; i < this.#array.length; i++) {
+      yield this.#array[i];
     }
   }
 
   toString() {
     let string = "";
-    for (let i = this.array.length - 1; i >= 0; i--) {
-      string += ` ${this.array[i].name} `;
+    for (let i = this.#array.length - 1; i >= 0; i--) {
+      string += ` ${this.#array[i].name} (${this.#array[i].fScore.toFixed(1)})`;
     }
     return string;
   }
