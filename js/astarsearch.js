@@ -32,13 +32,13 @@ async function aStarSearch(startName, goalName) {
 
     // loop over outgoing neighbors
     for (const neighbor of current.links) {
-      // tentative_g is the distance from start to the neighbor through current
-      const tentative_g = current.g + d(current, neighbor);
+      // gTentative is the distance from start to the neighbor through current
+      const gTentative = current.g + d(current, neighbor);
 
-      if (tentative_g < neighbor.g) {
+      if (gTentative < neighbor.g) {
         // This path to neighbor is better than any previous one. Record it!
         neighbor.prev = current;
-        neighbor.g = tentative_g;
+        neighbor.g = gTentative;
         neighbor.f = neighbor.g + h(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
           priorityQueue.enqueue(neighbor);
