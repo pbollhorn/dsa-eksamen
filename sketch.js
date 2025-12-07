@@ -29,7 +29,7 @@ function draw() {
   if (DISPLAY_BACKGROUND) {
     background(backgroundImage);
   } else {
-    background("white");
+    background("lightgray");
   }
 
   // Draw links
