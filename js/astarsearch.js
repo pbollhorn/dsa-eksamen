@@ -7,11 +7,6 @@ async function aStarSearch(startName, goalName) {
   start = graph.nodes.get(startName);
   goal = graph.nodes.get(goalName);
 
-  // Heuristic function: Estimates the cost to reach goal from node
-  function h(node) {
-    return d(node, goal);
-  }
-
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
@@ -58,6 +53,11 @@ function reconstructPath(node) {
     path.unshift(node);
   }
   return path;
+}
+
+// Heuristic function: Estimates the cost to reach goal from node
+function h(node) {
+  return d(node, goal);
 }
 
 function d(node1, node2) {
