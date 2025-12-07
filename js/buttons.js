@@ -39,6 +39,10 @@ async function startSearchButtonClick() {
   nextStepButton.disabled = true;
 }
 
+function resetEverythingButtonClick() {
+  window.location.reload();
+}
+
 function toggleBackgroundButtonClick() {
   DISPLAY_BACKGROUND = !DISPLAY_BACKGROUND;
 }
