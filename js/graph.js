@@ -22,8 +22,8 @@ class Node {
     this.y = y;
     this.links = new Set();
     this.prev = null;
-    this.fScore = Infinity;
-    this.gScore = Infinity;
+    this.f = Infinity;
+    this.g = Infinity;
   }
 
   addLink(node) {

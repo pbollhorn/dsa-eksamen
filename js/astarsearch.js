@@ -15,8 +15,8 @@ async function aStarSearch(startName, goalName) {
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
-  start.gScore = 0;
-  start.fScore = start.gScore + heuristic(start);
+  start.g = 0;
+  start.f = start.g + heuristic(start);
   start.prev = null; // Strictly not necesarry to do this
 
   await nextStepButtonClick();
@@ -32,14 +32,14 @@ async function aStarSearch(startName, goalName) {
 
     // loop over outgoing neighbors
     for (const neighbor of current.links) {
-      // tentative_gScore is the distance from start to the neighbor through current
-      const tentative_gScore = current.gScore + distance(current, neighbor);
+      // tentative_g is the distance from start to the neighbor through current
+      const tentative_g = current.g + distance(current, neighbor);
 
-      if (tentative_gScore < neighbor.gScore) {
+      if (tentative_g < neighbor.g) {
         // This path to neighbor is better than any previous one. Record it!
         neighbor.prev = current;
-        neighbor.gScore = tentative_gScore;
-        neighbor.fScore = neighbor.gScore + heuristic(neighbor);
+        neighbor.g = tentative_g;
+        neighbor.f = neighbor.g + heuristic(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
           priorityQueue.enqueue(neighbor);
         }

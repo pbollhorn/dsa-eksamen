@@ -10,13 +10,13 @@ class PriorityQueue {
     this.#array.push(node);
   }
 
-  // dequeue node with lowest fScore
+  // dequeue node with lowest f-value
   dequeue() {
     if (this.#array.length === 0) return undefined;
 
     let lowestIndex = 0;
     for (let i = 1; i < this.#array.length; i++) {
-      if (this.#array[i].fScore < this.#array[lowestIndex].fScore) {
+      if (this.#array[i].f < this.#array[lowestIndex].f) {
         lowestIndex = i;
       }
     }

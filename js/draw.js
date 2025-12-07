@@ -18,8 +18,8 @@ function drawNode(node, fillColor = "white") {
   textAlign(LEFT, TOP);
 
   if (DISPLAY_F_G_PREV) {
-    const f = node.fScore.toFixed(1);
-    const g = node.gScore.toFixed(1);
+    const f = node.f.toFixed(1);
+    const g = node.g.toFixed(1);
     const prev = node.prev ? node.prev.name : null;
     fill("blue");
     text(

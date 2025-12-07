@@ -39,7 +39,7 @@ async function startSearchButtonClick() {
     document.getElementById("resultDisplay").textContent =
       "Search finished: No path found";
   } else {
-    const length = path.slice(-1)[0].fScore.toFixed(1);
+    const length = path.slice(-1)[0].f.toFixed(1);
     const pathAsString = path.map((node) => node.name).join(", ");
     document.getElementById(
       "resultDisplay"
