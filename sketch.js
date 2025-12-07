@@ -1,23 +1,13 @@
 let graph;
 let bgImg;
-// let PriorityQueue;
 let current;
 let start;
 let goal;
 let priorityQueue;
 
-async function loadModules() {
-  // // Dynamically import buildGraph from the module
-  // let module = await import("./buildgraph.js");
-  // buildGraph = module.default; // default export
-  // module = await import("./priorityqueue/priorityqueue.js");
-  // PriorityQueue = module.default; // default export
-}
-
 // setup() is called by p5.js once when the sketch begins running
 async function setup() {
   bgImg = await loadImage("city.png");
-  await loadModules();
   graph = buildGraph();
   createCanvas(800, 550);
 
