@@ -39,7 +39,7 @@ function draw() {
     }
   }
 
-  // Draw the nodes
+  // Draw nodes
   for (const node of graph.nodes.values()) {
     drawNode(node);
   }
@@ -52,18 +52,12 @@ function draw() {
     drawNode(goal, CUSTOM_RED);
   }
 
-  // Draw queue (which is actually just HTML)
-  if (priorityQueue) {
-    document.getElementById("queueDisplay").textContent =
-      priorityQueue.toString();
-  }
-
-  // Draw current node and path
   if (current) {
+    // Draw current node
     drawNode(current, CUSTOM_GREEN);
     document.getElementById("currentNodeDisplay").textContent = current.name;
 
-    // Draw path from start to current node
+    // Draw path from start node to current node
     const path = reconstruct_path(current);
     for (let i = 0; i <= path.length - 2; i++) {
       const thisnode = path[i];
@@ -71,9 +65,15 @@ function draw() {
       drawLink(thisnode, nextnode, CUSTOM_RED);
     }
 
-    // Draw neighbors
+    // Draw neighbor nodes
     for (const neighbor of current.links) {
       drawNode(neighbor, CUSTOM_LIGHT_GREEN);
     }
+  }
+
+  // Draw queue (which is actually just HTML)
+  if (priorityQueue) {
+    document.getElementById("queueDisplay").textContent =
+      priorityQueue.toString();
   }
 }
