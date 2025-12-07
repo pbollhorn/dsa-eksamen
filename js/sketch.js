@@ -58,7 +58,7 @@ function draw() {
     document.getElementById("currentNodeDisplay").textContent = current.name;
 
     // Draw path from start node to current node
-    const path = reconstruct_path(current);
+    const path = reconstructPath(current);
     for (let i = 0; i <= path.length - 2; i++) {
       const thisnode = path[i];
       const nextnode = path[i + 1];

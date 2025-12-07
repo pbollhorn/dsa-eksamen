@@ -8,15 +8,15 @@ async function aStarSearch(startName, goalName) {
   goal = graph.nodes.get(goalName);
 
   // Heuristic function: Estimates the cost to reach goal from node
-  function heuristic(node) {
-    return distance(node, goal);
+  function h(node) {
+    return d(node, goal);
   }
 
   priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(start);
 
   start.g = 0;
-  start.f = start.g + heuristic(start);
+  start.f = start.g + h(start);
   start.prev = null; // Strictly not necesarry to do this
 
   await nextStepButtonClick();
@@ -26,20 +26,20 @@ async function aStarSearch(startName, goalName) {
     current = priorityQueue.dequeue();
 
     if (current === goal) {
-      const path = reconstruct_path(current);
+      const path = reconstructPath(current);
       return path;
     }
 
     // loop over outgoing neighbors
     for (const neighbor of current.links) {
       // tentative_g is the distance from start to the neighbor through current
-      const tentative_g = current.g + distance(current, neighbor);
+      const tentative_g = current.g + d(current, neighbor);
 
       if (tentative_g < neighbor.g) {
         // This path to neighbor is better than any previous one. Record it!
         neighbor.prev = current;
         neighbor.g = tentative_g;
-        neighbor.f = neighbor.g + heuristic(neighbor);
+        neighbor.f = neighbor.g + h(neighbor);
         if (priorityQueue.includes(neighbor) === false) {
           priorityQueue.enqueue(neighbor);
         }
@@ -51,7 +51,7 @@ async function aStarSearch(startName, goalName) {
   return null;
 }
 
-function reconstruct_path(node) {
+function reconstructPath(node) {
   const path = [node];
   while (node.prev !== null) {
     node = node.prev;
@@ -60,6 +60,6 @@ function reconstruct_path(node) {
   return path;
 }
 
-function distance(node1, node2) {
+function d(node1, node2) {
   return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
 }

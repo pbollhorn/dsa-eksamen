@@ -71,7 +71,7 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
   );
 
   if (DISPLAY_WEIGHTS) {
-    const weight = distance(nodeA, nodeB).toFixed(1);
+    const weight = d(nodeA, nodeB).toFixed(1);
     const x = (nodeA.x + nodeB.x) / 2;
     const y = (nodeA.y + nodeB.y) / 2;
     noStroke();
