@@ -1,12 +1,12 @@
-let bgImg;
+let backgroundImage;
 let graph;
 
 // setup() is called by p5.js once when the sketch begins running
 async function setup() {
-  bgImg = await loadImage("city.png");
+  backgroundImage = await loadImage("city.png");
   graph = buildGraph();
-  createCanvas(800, 550);
 
+  // Populate both select elements with all nodes
   for (const node of graph.nodes.values()) {
     let option = document.createElement("option");
     option.value = node.name;
@@ -17,6 +17,8 @@ async function setup() {
     option.textContent = node.name;
     goalNodeSelect.appendChild(option);
   }
+
+  createCanvas(800, 550);
 }
 
 // draw() is run repeatedly by p5.js approx. 60 times per second
@@ -25,7 +27,7 @@ function draw() {
   if (!graph) return;
 
   if (DISPLAY_BACKGROUND) {
-    background(bgImg);
+    background(backgroundImage);
   } else {
     background("white");
   }
@@ -75,4 +77,3 @@ function draw() {
     }
   }
 }
-
