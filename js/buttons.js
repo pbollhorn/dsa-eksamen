@@ -2,16 +2,26 @@ let DISPLAY_BACKGROUND = true;
 let DISPLAY_F_G_PREV = true;
 let DISPLAY_COORDINATES = false;
 let DISPLAY_WEIGHTS = false;
-
 let nextStepPromiseResolve = null;
 
-async function nextStepButtonClick() {
-  if (nextStepPromiseResolve !== null) {
-    nextStepPromiseResolve(); // Resolve the promise
-  }
-  return new Promise((resolve) => {
-    nextStepPromiseResolve = resolve;
-  });
+function resetEverythingButtonClick() {
+  window.location.reload();
+}
+
+function toggleBackgroundButtonClick() {
+  DISPLAY_BACKGROUND = !DISPLAY_BACKGROUND;
+}
+
+function toggleFGPrevButtonClick() {
+  DISPLAY_F_G_PREV = !DISPLAY_F_G_PREV;
+}
+
+function toggleCoordinatesButtonClick() {
+  DISPLAY_COORDINATES = !DISPLAY_COORDINATES;
+}
+
+function toggleWeightsButtonClick() {
+  DISPLAY_WEIGHTS = !DISPLAY_WEIGHTS;
 }
 
 async function startSearchButtonClick() {
@@ -39,22 +49,11 @@ async function startSearchButtonClick() {
   nextStepButton.disabled = true;
 }
 
-function resetEverythingButtonClick() {
-  window.location.reload();
-}
-
-function toggleBackgroundButtonClick() {
-  DISPLAY_BACKGROUND = !DISPLAY_BACKGROUND;
-}
-
-function toggleFGPrevButtonClick() {
-  DISPLAY_F_G_PREV = !DISPLAY_F_G_PREV;
-}
-
-function toggleCoordinatesButtonClick() {
-  DISPLAY_COORDINATES = !DISPLAY_COORDINATES;
-}
-
-function toggleWeightsButtonClick() {
-  DISPLAY_WEIGHTS = !DISPLAY_WEIGHTS;
+async function nextStepButtonClick() {
+  if (nextStepPromiseResolve !== null) {
+    nextStepPromiseResolve(); // Resolve the promise
+  }
+  return new Promise((resolve) => {
+    nextStepPromiseResolve = resolve;
+  });
 }
