@@ -101,19 +101,19 @@ function drawNode(node, fillColor = "white") {
   circle(node.x, node.y, 2 * NODE_RADIUS);
   fill("black");
   textSize(1.4 * NODE_RADIUS);
-  // textStyle(BOLD);
   textAlign(CENTER, CENTER);
   text(`${node.name}`, node.x, node.y);
 
+  noStroke();
+
+  textSize(1.0 * NODE_RADIUS);
+  textAlign(LEFT, TOP);
+
   if (DISPLAY_F_G_PREV) {
-    noStroke();
-    fill("blue");
-    textSize(1.0 * NODE_RADIUS);
-    textStyle(NORMAL);
-    textAlign(LEFT, TOP);
     const f = node.fScore.toFixed(1);
     const g = node.gScore.toFixed(1);
     const prev = node.prev ? node.prev.name : null;
+    fill("blue");
     text(
       `f: ${f}\ng: ${g}\nprev: ${prev}`,
       node.x + 0.8 * NODE_RADIUS,
@@ -122,10 +122,12 @@ function drawNode(node, fillColor = "white") {
   }
 
   if (DISPLAY_COORDINATES) {
-    fill("red");
-    textSize(20);
-    textStyle(BOLD);
-    text(`(${node.x}, ${node.y})`, node.x, node.y);
+    fill("purple");
+    text(
+      `(${node.x}, ${node.y})`,
+      node.x + 0.8 * NODE_RADIUS,
+      node.y + 0.8 * NODE_RADIUS
+    );
   }
 }
 
@@ -164,6 +166,9 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
     const weight = distance(nodeA, nodeB).toFixed(1);
     const x = (nodeA.x + nodeB.x) / 2;
     const y = (nodeA.y + nodeB.y) / 2;
+    noStroke();
+    fill("red");
+    textAlign(CENTER, BOTTOM);
     text(weight, x, y);
   }
 }
