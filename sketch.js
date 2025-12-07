@@ -1,9 +1,5 @@
-let graph;
 let bgImg;
-let current;
-let start;
-let goal;
-let priorityQueue;
+let graph;
 
 // setup() is called by p5.js once when the sketch begins running
 async function setup() {

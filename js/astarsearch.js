@@ -1,3 +1,8 @@
+let current;
+let start;
+let goal;
+let priorityQueue;
+
 // My implementation of A* Search
 async function aStarSearch(startName, goalName) {
   start = graph.nodes.get(startName);
