@@ -3,7 +3,6 @@ let start;
 let goal;
 let priorityQueue;
 
-// My implementation of A* Search
 async function aStarSearch(startName, goalName) {
   start = graph.nodes.get(startName);
   goal = graph.nodes.get(goalName);
@@ -34,7 +33,7 @@ async function aStarSearch(startName, goalName) {
     // loop over outgoing neighbors
     for (const neighbor of current.links) {
       // tentative_gScore is the distance from start to the neighbor through current
-      tentative_gScore = current.gScore + distance(current, neighbor);
+      const tentative_gScore = current.gScore + distance(current, neighbor);
 
       if (tentative_gScore < neighbor.gScore) {
         // This path to neighbor is better than any previous one. Record it!
