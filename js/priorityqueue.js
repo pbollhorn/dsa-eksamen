@@ -12,15 +12,15 @@ class PriorityQueue {
 
   // dequeue node with lowest fScore
   dequeue() {
-  if (this.#array.length === 0) return undefined;
+    if (this.#array.length === 0) return undefined;
 
-  let lowestIndex = 0;
-  for (let i = 1; i < this.#array.length; i++) {
-    if (this.#array[i].fScore < this.#array[lowestIndex].fScore) {
-      lowestIndex = i;
+    let lowestIndex = 0;
+    for (let i = 1; i < this.#array.length; i++) {
+      if (this.#array[i].fScore < this.#array[lowestIndex].fScore) {
+        lowestIndex = i;
+      }
     }
-  }
-  return this.#array.splice(lowestIndex, 1)[0];
+    return this.#array.splice(lowestIndex, 1)[0];
   }
 
   size() {
@@ -32,10 +32,6 @@ class PriorityQueue {
   }
 
   toString() {
-    let string = "";
-    for (const node of this.#array) {
-      string += `${node.name}`;
-    }
-    return string;
+    return this.#array.map((node) => node.name).join(", ");
   }
 }
