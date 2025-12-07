@@ -26,20 +26,10 @@ class PriorityQueue {
     console.log(this.#array);
   }
 
-  // Iterator that yields each element in the queue
-  *[Symbol.iterator]() {
-    // for (element of this.#array) {
-    //   yield element;
-    // }
-    for (let i = 0; i < this.#array.length; i++) {
-      yield this.#array[i];
-    }
-  }
-
   toString() {
     let string = "";
-    for (let i = this.#array.length - 1; i >= 0; i--) {
-      string += ` ${this.#array[i].name} (${this.#array[i].fScore.toFixed(1)})`;
+    for (const node of this.#array) {
+      string += `${node.name}`;
     }
     return string;
   }
