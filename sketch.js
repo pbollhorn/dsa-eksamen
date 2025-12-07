@@ -10,7 +10,6 @@ let current;
 let start;
 let goal;
 let priorityQueue;
-let neighbors;
 
 async function loadModules() {
   // Dynamically import buildGraph from the module
@@ -88,11 +87,9 @@ function draw() {
       const nextnode = path[i + 1];
       drawLink(thisnode, nextnode, CUSTOM_RED);
     }
-  }
 
-  // Draw neighbors
-  if (neighbors) {
-    for (const neighbor of neighbors) {
+    // Draw neighbors
+    for (const neighbor of current.links) {
       drawNode(neighbor, CUSTOM_LIGHT_GREEN);
     }
   }
@@ -197,11 +194,8 @@ async function aStarSearch(startName, goalName) {
       return path;
     }
 
-    await nextStepButtonClick();
-
     // loop over outgoing neighbors
-    neighbors = current.links;
-    for (const neighbor of neighbors) {
+    for (const neighbor of current.links) {
       // tentative_gScore is the distance from start to the neighbor through current
       tentative_gScore = current.gScore + distance(current, neighbor);
 
@@ -216,7 +210,6 @@ async function aStarSearch(startName, goalName) {
       }
     }
     await nextStepButtonClick();
-    neighbors = undefined;
   }
   // Open set is empty but goal was never reached
   return null;
