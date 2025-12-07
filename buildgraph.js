@@ -145,7 +145,6 @@ export default function buildGraph() {
   graph.addLink("δ", "ø");
   graph.addLink("δ", "γ");
   graph.addLink("δ", "ε");
-  graph.addLink("ε", "å");
   graph.addLink("ε", "δ");
   graph.addLink("ε", "ζ");
   graph.addLink("ζ", "α");
