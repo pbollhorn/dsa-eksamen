@@ -4,7 +4,8 @@ class Graph {
   }
 
   addNode(name, x, y) {
-    this.nodes.set(name, new Node(name, x, y));
+    const node = new Node(name, x, y);
+    this.nodes.set(name, node);
   }
 
   // add link from node to another node
