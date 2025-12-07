@@ -13,9 +13,11 @@
     <script src="libraries/p5.sound.min.js"></script>
 
     <script>
+      let DISPLAY_BACKGROUND = true;
+      let DISPLAY_F_G_PREV = true;
       let DISPLAY_COORDINATES = false;
       let DISPLAY_WEIGHTS = false;
-      let DISPLAY_BACKGROUND = true;
+
 
       async function startSearchButtonClick() {
         const startNodeSelect = document.getElementById("startNodeSelect");
@@ -57,6 +59,9 @@
     <button onclick="window.location.reload();">Reset everything</button>
     <button onclick="DISPLAY_BACKGROUND = !DISPLAY_BACKGROUND">
       Toggle Background
+    </button>
+    <button onclick="DISPLAY_F_G_PREV = !DISPLAY_F_G_PREV">
+      Toggle f,g,prev
     </button>
     <button onclick="DISPLAY_COORDINATES = !DISPLAY_COORDINATES">
       Toggle Coordinates

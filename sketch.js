@@ -105,19 +105,21 @@ function drawNode(node, fillColor = "white") {
   textAlign(CENTER, CENTER);
   text(`${node.name}`, node.x, node.y);
 
-  noStroke();
-  fill("blue");
-  textSize(1.0 * NODE_RADIUS);
-  textStyle(NORMAL);
-  textAlign(LEFT, TOP);
-  const f = node.fScore.toFixed(1);
-  const g = node.gScore.toFixed(1);
-  const prev = node.prev ? node.prev.name : null;
-  text(
-    `f: ${f}\ng: ${g}\nprev: ${prev}`,
-    node.x + 0.8 * NODE_RADIUS,
-    node.y + 0.8 * NODE_RADIUS
-  );
+  if (DISPLAY_F_G_PREV) {
+    noStroke();
+    fill("blue");
+    textSize(1.0 * NODE_RADIUS);
+    textStyle(NORMAL);
+    textAlign(LEFT, TOP);
+    const f = node.fScore.toFixed(1);
+    const g = node.gScore.toFixed(1);
+    const prev = node.prev ? node.prev.name : null;
+    text(
+      `f: ${f}\ng: ${g}\nprev: ${prev}`,
+      node.x + 0.8 * NODE_RADIUS,
+      node.y + 0.8 * NODE_RADIUS
+    );
+  }
 
   if (DISPLAY_COORDINATES) {
     fill("red");
