@@ -1,26 +1,24 @@
 let current;
 let start;
 let goal;
-let priorityQueue;
+let priorityQueue = new PriorityQueue();
 
 async function aStarSearch(startName, goalName) {
   start = graph.nodes.get(startName);
   goal = graph.nodes.get(goalName);
 
-  priorityQueue = new PriorityQueue();
-  priorityQueue.enqueue(start);
-
   start.g = 0;
   start.f = start.g + h(start);
-  start.prev = null; // Strictly not necesarry to do this
+
+  priorityQueue.enqueue(start);
 
   await nextStepButtonClick();
 
-  // while openSet is not empty
   while (priorityQueue.size() > 0) {
     current = priorityQueue.dequeue();
 
     if (current === goal) {
+      // Path found
       const path = reconstructPath(current);
       return path;
     }
@@ -42,7 +40,7 @@ async function aStarSearch(startName, goalName) {
     }
     await nextStepButtonClick();
   }
-  // Open set is empty but goal was never reached
+  // No path found
   return null;
 }
 
@@ -55,11 +53,12 @@ function reconstructPath(node) {
   return path;
 }
 
-// Heuristic function: Estimates the cost to reach goal from node
+// Heuristic function: Straight-line distance from node to goal
 function h(node) {
   return d(node, goal);
 }
 
+// Function for straight-line distance between two nodes
 function d(node1, node2) {
   return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
 }
