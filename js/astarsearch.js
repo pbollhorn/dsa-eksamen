@@ -11,7 +11,6 @@ async function aStarSearch(startName, goalName) {
   start.f = start.g + h(start);
 
   priorityQueue.enqueue(start);
-
   await nextStepButtonClick();
 
   while (priorityQueue.size() > 0) {
