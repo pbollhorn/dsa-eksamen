@@ -8,11 +8,11 @@ class Graph {
     this.nodes.set(name, node);
   }
 
-  // add link from node to another node
-  addLink(from, to) {
-    const nodeA = this.nodes.get(from);
-    const nodeB = this.nodes.get(to);
-    nodeA.addLink(nodeB);
+  // Add link from node1 to node2
+  addLink(node1name, node2name) {
+    const node1 = this.nodes.get(node1name);
+    const node2 = this.nodes.get(node2name);
+    node1.addLink(node2);
   }
 }
 
@@ -22,9 +22,9 @@ class Node {
     this.x = x;
     this.y = y;
     this.links = new Set();
-    this.prev = null;
     this.f = Infinity;
     this.g = Infinity;
+    this.prev = null;
   }
 
   addLink(node) {
