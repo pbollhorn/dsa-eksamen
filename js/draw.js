@@ -13,7 +13,6 @@ function drawNode(node, fillColor = "white") {
   text(`${node.name}`, node.x, node.y);
 
   noStroke();
-
   textSize(1.0 * NODE_RADIUS);
   textAlign(LEFT, TOP);
 
@@ -40,14 +39,11 @@ function drawNode(node, fillColor = "white") {
 }
 
 function drawLink(nodeA, nodeB, fillColor = "black") {
-  // Angle from A to B
   const a = atan2(nodeB.y - nodeA.y, nodeB.x - nodeA.x);
 
-  // Start point at edge of nodeA's circle
   const startX = nodeA.x + NODE_RADIUS * cos(a);
   const startY = nodeA.y + NODE_RADIUS * sin(a);
 
-  // End point at edge of nodeB's circle
   const endX = nodeB.x - NODE_RADIUS * cos(a);
   const endY = nodeB.y - NODE_RADIUS * sin(a);
 
@@ -59,8 +55,8 @@ function drawLink(nodeA, nodeB, fillColor = "black") {
   line(startX, startY, endX, endY);
   strokeWeight(1);
 
-  // Draw the arrowhead at the end
-  const arrowSize = 10; // size of the arrowhead
+  // Draw arrow
+  const arrowSize = 10;
   triangle(
     endX,
     endY,
