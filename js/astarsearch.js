@@ -22,13 +22,14 @@ async function aStarSearch(startName, goalName) {
       return path;
     }
 
-    // loop over outgoing neighbors
+    // Loop over outgoing neighbors
     for (const neighbor of current.links) {
-      // gTentative is the distance from start to the neighbor through current
+      // Length of path from start to current to neighbor
       const gTentative = current.g + d(current, neighbor);
 
+      // Check if this path is shorter than existing path to neighbor
       if (gTentative < neighbor.g) {
-        // This path to neighbor is better than any previous one. Record it!
+        // Path is shorter. Record it!
         neighbor.prev = current;
         neighbor.g = gTentative;
         neighbor.f = neighbor.g + h(neighbor);
@@ -39,6 +40,7 @@ async function aStarSearch(startName, goalName) {
     }
     await nextStepButtonClick();
   }
+
   // No path found
   return null;
 }
