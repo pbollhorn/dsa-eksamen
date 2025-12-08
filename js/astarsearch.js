@@ -44,10 +44,10 @@ async function aStarSearch(startName, goalName) {
 }
 
 function reconstructPath(node) {
-  const path = [node];
-  while (node.prev !== null) {
-    node = node.prev;
+  const path = [];
+  while (node !== null) {
     path.unshift(node);
+    node = node.prev;
   }
   return path;
 }
